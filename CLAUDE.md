@@ -14,5 +14,5 @@ Colony-management system for Kerbal Space Program (save "The Expanse"; mods: USI
 - Key invariants (see REVIEW-CONTEXT.md): Actual throughput comes only from accepted transfers; measured zero != unknown != configured intent; completed minute-power windows are immutable, expire after 120 real s, and are never routed through the 10 game-s instantaneous expiry; ClockView body capped at 262,144 bytes (WOLF/Effects 65,536); 21,600 s/Kerbin day applied exactly once.
 
 ## Build / test (Windows; needs local KSP/Unity/Harmony/USI/BRP assemblies, HintPaths are absolute)
-Run sequentially: `dotnet build` WorldBridge, Clock.Host, Clock.Manager (-c Release); `dotnet test backend/ExpansePlatform/tests/Expanse.Clock.Tests.csproj`; `dotnet test backend/ExpansePlatform/dev/Expanse.ProductionTelemetry.Tests/...`. `tests/recorded52.json` is excluded; dependent tests need a synthetic fixture.
+Run sequentially: `dotnet build` WorldBridge, Clock.Host (-c Release; Clock.Manager, the WPF app, is abandoned); `dotnet test backend/ExpansePlatform/tests/Expanse.Clock.Tests.csproj`; `dotnet test backend/ExpansePlatform/dev/Expanse.ProductionTelemetry.Tests/...`. `tests/recorded52.json` is excluded; dependent tests need a synthetic fixture.
 Site: see `site/site-v67/BUILD_AND_TEST.md` (Node tests under `tests/`).
