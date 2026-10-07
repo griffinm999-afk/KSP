@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><LangVersion>7.3</LangVersion><AssemblyName>Expanse.BrpColony.Tests</AssemblyName><KspRoot>C:\Kerbal Space Program</KspRoot><NoWarn>SYSLIB0050;SYSLIB0039</NoWarn></PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Expanse.BrpColony"><HintPath>..\..\src\Expanse.BrpColony\bin\Release\net481\Expanse.BrpColony.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="Assembly-CSharp"><HintPath>$(KspRoot)\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(KspRoot)\KSP_x64_Data\Managed\UnityEngine.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(KspRoot)\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="BackgroundResourceProcessing"><HintPath>$(KspRoot)\GameData\BackgroundResourceProcessing\Plugins\BackgroundResourceProcessing.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="USITools"><HintPath>$(KspRoot)\GameData\000_USITools\USITools.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(KspRoot)\GameData\000_Harmony\0Harmony.dll</HintPath><Private>true</Private></Reference>
+    <Reference Include="Mono.Cecil"><HintPath>$(KspRoot)\KSP_x64_Data\Managed\Mono.Cecil.dll</HintPath><Private>true</Private><Aliases>CecilInstalled</Aliases></Reference>
+  </ItemGroup>
+  <ItemGroup><Compile Include="..\..\src\Expanse.WorldBridge\ColonyBrpColdRecipeGuard.cs" Link="ColonyBrpColdRecipeGuard.cs" /><Compile Include="..\..\src\Expanse.WorldBridge\ColonyBrpColdLoadAddon.cs" Link="ColonyBrpColdLoadAddon.cs" /></ItemGroup>
+  <Target Name="BuildIntegration" BeforeTargets="ResolveReferences"><MSBuild Projects="..\..\src\Expanse.BrpColony\Expanse.BrpColony.csproj" Targets="Build" Properties="Configuration=Release" /></Target>
+  <ItemGroup><None Include="$(KspRoot)\GameData\BackgroundResourceProcessing\Plugins\BackgroundResourceProcessing.System.Memory.dll" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" /><None Include="$(KspRoot)\GameData\000_KSPBurst\Plugins\*.dll" Link="%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" /></ItemGroup>
+</Project>

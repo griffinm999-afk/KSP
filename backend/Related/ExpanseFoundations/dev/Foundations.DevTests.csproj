@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net472</TargetFramework><AssemblyName>Foundations.DevTests</AssemblyName><KSPDIR>C:\Kerbal Space Program</KSPDIR></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3" PrivateAssets="all"/>
+    <ProjectReference Include="..\src\ExpanseFoundations.csproj" />
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\Assembly*.dll"><Private>false</Private></Reference>
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll"><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

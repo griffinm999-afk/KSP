@@ -1,0 +1,110 @@
+{
+  "Bop": {
+    "source": "Parallax_StockPlanetTextures/Bop/PluginData/Bop_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Dres": {
+    "source": "Parallax_StockPlanetTextures/Dres/PluginData/Dres_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Duna": {
+    "source": "Parallax_StockPlanetTextures/Duna/PluginData/Duna_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Eeloo": {
+    "source": "Parallax_StockPlanetTextures/Eeloo/PluginData/Eeloo_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Eve": {
+    "source": "Parallax_StockPlanetTextures/Eve/PluginData/Eve_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Gilly": {
+    "source": "Parallax_StockPlanetTextures/Gilly/PluginData/Gilly_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Ike": {
+    "source": "Parallax_StockPlanetTextures/Ike/PluginData/Ike_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Kerbin": {
+    "source": "Parallax_StockPlanetTextures/Kerbin/PluginData/Kerbin_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Laythe": {
+    "source": "Parallax_StockPlanetTextures/Laythe/PluginData/Laythe_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Minmus": {
+    "source": "Parallax_StockPlanetTextures/Minmus/PluginData/Minmus_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Moho": {
+    "source": "Parallax_StockPlanetTextures/Moho/PluginData/Moho_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Mun": {
+    "source": "Parallax_StockPlanetTextures/Mun/PluginData/Mun_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Pol": {
+    "source": "Parallax_StockPlanetTextures/Pol/PluginData/Pol_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Tylo": {
+    "source": "Parallax_StockPlanetTextures/Tylo/PluginData/Tylo_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Vall": {
+    "source": "Parallax_StockPlanetTextures/Vall/PluginData/Vall_Color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Hale": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Hale/Hale_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Karen": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Karen/Karen_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Nissee": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Nissee/Nissee_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Ovok": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Ovok/Ovok_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Plock": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Plock/Plock_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Polta": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Polta/Polta_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Priax": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Priax/Priax_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Slate": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Slate/Slate_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Tal": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Tal/Tal_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Tekto": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Tekto/Tekto_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Thatmo": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Thatmo/Thatmo_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  },
+  "Wal": {
+    "source": "OuterParallax/OPM/_Textures/PluginData/Scaled/Wal/Wal_color.dds",
+    "projection": "equirectangular; north up; longitude -180 to 180"
+  }
+}

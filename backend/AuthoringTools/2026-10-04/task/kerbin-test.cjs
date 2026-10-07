@@ -1,0 +1,45 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const source=fs.readFileSync(process.argv[2],'utf8');
+const shipping=JSON.parse(fs.readFileSync(process.argv[3],'utf8'));
+const saved=JSON.parse(fs.readFileSync(process.argv[4],'utf8'));
+const economics=JSON.parse(fs.readFileSync(process.argv[6],'utf8'));
+class Element{constructor(tag,text=''){this.tag=tag;this.textContent=text;this.children=[];this.attrs={};this.hidden=false;this.classList={add(){}}}append(...x){this.children.push(...x)}replaceChildren(...x){this.children=x}setAttribute(k,v){this.attrs[k]=String(v)}getAttribute(k){return this.attrs[k]}}
+const el=(tag,text)=>new Element(tag,text),walk=n=>[n,...(n.children||[]).flatMap(walk)],words=n=>walk(n).map(x=>x.textContent||'').join(' ');
+const list=el('div'),root=el('div'),nodes={'colony-list':list,'colony-detail':root};
+let data=saved;
+const context={el,window:{},KERBIN_SHIPPING:shipping,SHIPPING_ECONOMICS:economics,api:async()=>data,detailPanel:title=>el('section',title),document:{createTextNode:text=>el('#text',text),body:{classList:{add(){}}}},$:id=>nodes[id],console};
+vm.createContext(context);
+const start=source.indexOf('function renderKerbin(){'),middle=source.indexOf('function detailPanel(',start),deliveries=source.indexOf('function renderDeliveries(root,hubOnly=false){'),end=source.indexOf('function renderColonySettings(',deliveries);
+assert(start>=0&&middle>start&&deliveries>middle&&end>deliveries);
+vm.runInContext(source.slice(start,middle)+'\n'+source.slice(deliveries,end),context);
+assert.equal(context.kerbinShipmentDirection(null,'kerbin-recovery','Minmus','Kerbin recovery'),'Inbound');
+assert.equal(context.kerbinShipmentDirection(shipping.endpoints[1].id,'minmus-depot','Fuel Depot','Minmus'),'Outbound');
+assert.equal(context.kerbinShipmentDirection('other-id','other-id','Fuel Depot','Fuel Depot'),null);
+assert.equal(context.kerbinShipmentDirection('duna-a','duna-b','Duna A','Duna B'),null);
+const unrelated={id:'Duna transfer',source:'Duna A',destination:'Duna B',travelSeconds:100,cargo:[]};
+const unrelatedTrip={route:unrelated.id,sourceId:'duna-a',destinationId:'duna-b',source:unrelated.source,destination:unrelated.destination,cargo:[],departureUt:100,dueUt:200};
+data={...saved,routes:[...saved.routes,unrelated],shipments:[...saved.shipments,unrelatedTrip]};
+context.renderKerbin();
+setImmediate(()=>{
+ let all=walk(root);
+ assert.equal(all.filter(x=>x.className==='current-route-summary').length,3);
+ assert(words(root).includes('29 in transit · 29 inbound · 0 outbound'));
+ assert(words(root).includes('EXPANSE HOTEL CORE')&&words(root).includes('Fuel Depot')&&words(root).includes('Kerbin recovery'));
+ assert(!words(root).includes('Duna transfer'));
+ assert(words(root).includes('Buying power: unlimited'));
+ assert(!words(root).includes('Career balances'));
+ const outbound={id:'Kerbin fuel export',source:'Fuel Depot',destination:'Minmus Mining',travelSeconds:100,cargo:[]};
+ const outboundTrip={route:outbound.id,sourceId:shipping.endpoints[1].id,destinationId:'minmus-depot',source:outbound.source,destination:outbound.destination,cargo:[],departureUt:100,dueUt:200};
+ data={...data,routes:[...data.routes,outbound],shipments:[...data.shipments,outboundTrip]};
+ context.renderKerbin();
+ setImmediate(()=>{
+  all=walk(root);
+  assert.equal(all.filter(x=>x.className==='current-route-summary').length,4);
+  assert(words(root).includes('30 in transit · 29 inbound · 1 outbound'));
+  assert(words(root).includes('Kerbin fuel export · Outbound'));
+  assert(!words(root).includes('Duna transfer'));
+  assert(source.includes("link.href='/kerbin'"));
+  assert(fs.readFileSync(process.argv[5],'utf8').includes("u.pathname!=='/kerbin'"));
+  console.log('Kerbin infrastructure, navigation, inbound/outbound filtering, and non-Kerbin exclusion passed');
+ });
+});

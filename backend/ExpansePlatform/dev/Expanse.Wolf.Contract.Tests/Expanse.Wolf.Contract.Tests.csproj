@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net472</TargetFramework><LangVersion>7.3</LangVersion></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Expanse.Domain/Expanse.Domain.csproj" />
+    <Reference Include="Assembly-CSharp"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath></Reference>
+    <Reference Include="UnityEngine"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="USI_WOLF"><HintPath>C:\Kerbal Space Program\GameData\UmbraSpaceIndustries\WOLF\USI_WOLF.dll</HintPath></Reference>
+    <Reference Include="WOLFUI"><HintPath>C:\Kerbal Space Program\GameData\UmbraSpaceIndustries\WOLF\WOLFUI.dll</HintPath></Reference>
+    <Reference Include="USITools"><HintPath>C:\Kerbal Space Program\GameData\000_USITools\USITools.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>

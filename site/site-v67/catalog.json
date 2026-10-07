@@ -1,0 +1,1547 @@
+{
+  "bodies": [
+    {
+      "name": "Archae",
+      "biomes": [
+        "LowlandFlats",
+        "HighlandFlats",
+        "GrandCanyon",
+        "Canyons",
+        "GrandMountains",
+        "Crags",
+        "Band",
+        "BigFlat",
+        "SmolFlat",
+        "LoneGlacier",
+        "Cracks"
+      ]
+    },
+    {
+      "name": "Axod",
+      "biomes": [
+        "Pockmarks",
+        "Craters",
+        "Midlands",
+        "Hills",
+        "GreatCliffs",
+        "Spires"
+      ]
+    },
+    {
+      "name": "Bis",
+      "biomes": [
+        "CantaloupeTerrain",
+        "CryolavaFlats",
+        "Cryovolcanoes",
+        "Lowlands",
+        "Midlands",
+        "Highlands",
+        "Canyons",
+        "Poles",
+        "Moundlands",
+        "StainedCantaloupeTerrain",
+        "Planitia",
+        "CrystallizedCanyons"
+      ]
+    },
+    {
+      "name": "Bop",
+      "biomes": [
+        "Peaks",
+        "Poles",
+        "Ridges",
+        "Slopes",
+        "Valley"
+      ]
+    },
+    {
+      "name": "Charr",
+      "biomes": [
+        "MoltenCraters",
+        "ScorchedCraters",
+        "HotCraters",
+        "Craters",
+        "MetallicPlains",
+        "RockyMountains",
+        "Plateaus",
+        "NorthernCrater",
+        "NorthernCraterRays",
+        "KrakensPedestal"
+      ]
+    },
+    {
+      "name": "Crokslev",
+      "biomes": [
+        "Poles",
+        "Midlands",
+        "Highlands",
+        "Craters",
+        "Rubble",
+        "BigCrater",
+        "CentralPeak",
+        "Fissures",
+        "SouthernPile",
+        "OriginCrater",
+        "SatCraters"
+      ]
+    },
+    {
+      "name": "Donk",
+      "biomes": [
+        "LavaLakes",
+        "BasaltBasins",
+        "Mares",
+        "Midlands",
+        "Highlands",
+        "Mountains",
+        "Craters",
+        "PolarLowlands",
+        "PolarMidlands",
+        "PolarHighlands"
+      ]
+    },
+    {
+      "name": "Dres",
+      "biomes": [
+        "Canyons",
+        "Highlands",
+        "Impact Craters",
+        "Impact Ejecta",
+        "Lowlands",
+        "Midlands",
+        "Poles",
+        "Ridges"
+      ]
+    },
+    {
+      "name": "Duna",
+      "biomes": [
+        "Craters",
+        "Eastern Canyon",
+        "Highlands",
+        "Lowlands",
+        "Midland Canyon",
+        "Midland Sea",
+        "Midlands",
+        "Northeast Basin",
+        "Northern Shelf",
+        "Polar Craters",
+        "Polar Highlands",
+        "Poles",
+        "Southern Basin",
+        "Western Canyon"
+      ]
+    },
+    {
+      "name": "Edas",
+      "biomes": [
+        "PolarCrater",
+        "Craters",
+        "Surface"
+      ]
+    },
+    {
+      "name": "Eeloo",
+      "biomes": [
+        "Babbage Patch",
+        "Craters",
+        "Fragipan",
+        "Highlands",
+        "Ice Canyons",
+        "Lowlands",
+        "Midlands",
+        "Mu",
+        "Northern Glaciers",
+        "Poles",
+        "Southern Glaciers"
+      ]
+    },
+    {
+      "name": "Ervo",
+      "biomes": [
+        "LowlandFlats",
+        "HighlandFlats",
+        "Mountains",
+        "Glaciers",
+        "IceFields",
+        "Poles",
+        "CoastalBasins",
+        "OxygenLakes",
+        "ImpactBasin",
+        "RoughGlacierField",
+        "SmoothGlacierField",
+        "MinorGlacierField"
+      ]
+    },
+    {
+      "name": "Eve",
+      "biomes": [
+        "Akatsuki Lake",
+        "Crater Lake",
+        "Craters",
+        "Eastern Sea",
+        "Explodium Sea",
+        "Foothills",
+        "Highlands",
+        "Impact Ejecta",
+        "Lowlands",
+        "Midlands",
+        "Olympus",
+        "Peaks",
+        "Poles",
+        "Shallows",
+        "Western Sea"
+      ]
+    },
+    {
+      "name": "Flake",
+      "biomes": [
+        "Ice",
+        "Cracks",
+        "Poles"
+      ]
+    },
+    {
+      "name": "Geito",
+      "biomes": [
+        "Lowlands",
+        "Midlands",
+        "Highlands"
+      ]
+    },
+    {
+      "name": "Gilly",
+      "biomes": [
+        "Highlands",
+        "Lowlands",
+        "Midlands"
+      ]
+    },
+    {
+      "name": "Gup",
+      "biomes": [
+        "Dunes",
+        "Slopes",
+        "RockySlopes",
+        "Burrens",
+        "EquatorialRidge",
+        "Poles"
+      ]
+    },
+    {
+      "name": "Gurdamma",
+      "biomes": [
+        "AbyssalOceans",
+        "DeepOceans",
+        "Oceans",
+        "Shallows",
+        "Shores",
+        "Lowlands",
+        "Midlands",
+        "Highlands",
+        "Mountains",
+        "AlpineMountains",
+        "Peaks",
+        "Volcanoes",
+        "VolcanoCraters",
+        "MountBogue",
+        "AshenCoasts",
+        "AshenLowlands",
+        "AshenMidlands",
+        "AshenHighlands",
+        "AshenMountains",
+        "AshenAlpineMountains",
+        "AshenPeaks",
+        "Poles",
+        "PolarSeas",
+        "ShankastRiver",
+        "TealRiver",
+        "MylonRiver",
+        "Faultlines",
+        "FaultlineShallows",
+        "FaultlineOceans",
+        "FaultlineTrenches"
+      ]
+    },
+    {
+      "name": "Hale",
+      "biomes": [
+        "Macula",
+        "Amarius Region"
+      ]
+    },
+    {
+      "name": "Havous",
+      "biomes": [
+        "Scar",
+        "PointZero",
+        "MontesTimor",
+        "Slopes",
+        "Lowlands",
+        "Highlands",
+        "Mountains",
+        "Glaciers",
+        "IceFields",
+        "VallesParvus",
+        "Poles"
+      ]
+    },
+    {
+      "name": "Ike",
+      "biomes": [
+        "Central Mountain Ridge",
+        "Eastern Mountain Ridge",
+        "Lowlands",
+        "Midlands",
+        "Polar Lowlands",
+        "South Eastern Mountain Range",
+        "South Pole",
+        "Western Mountain Ridge"
+      ]
+    },
+    {
+      "name": "Kal",
+      "biomes": [
+        "Lowlands",
+        "Mountains",
+        "Peaks"
+      ]
+    },
+    {
+      "name": "Karen",
+      "biomes": [
+        "Slekon Basin",
+        "Felger Promontory",
+        "Binary Crater",
+        "Elowin Region",
+        "Sogelrun Region",
+        "Dyson Region",
+        "Nereid Region",
+        "Faringor Plains",
+        "Vager Plains",
+        "Padishar Plateau",
+        "Sumghai Mesa",
+        "Arralakh Valley"
+      ]
+    },
+    {
+      "name": "Kerbin",
+      "biomes": [
+        "Water",
+        "Grasslands",
+        "Highlands",
+        "Shores",
+        "Mountains",
+        "Deserts",
+        "Badlands",
+        "Tundra",
+        "Ice Caps",
+        "Northern Ice Shelf",
+        "Southern Ice Shelf",
+        "The Cold Ocean",
+        "Cold Shores"
+      ]
+    },
+    {
+      "name": "KiKi",
+      "biomes": [
+        "ContactPoint",
+        "MajorLobe",
+        "MinorLobe"
+      ]
+    },
+    {
+      "name": "Lapat",
+      "biomes": [
+        "Lakes",
+        "Shores",
+        "Dunes",
+        "Ruggedlands",
+        "Plateaus"
+      ]
+    },
+    {
+      "name": "Laythe",
+      "biomes": [
+        "Crater Bay",
+        "Crater Island",
+        "Cresent Bay",
+        "Degrasse Sea",
+        "Dunes",
+        "Peaks",
+        "Poles",
+        "Shallows",
+        "Shores",
+        "The Sagen Sea"
+      ]
+    },
+    {
+      "name": "LintMikey",
+      "biomes": [
+        "Lowlands",
+        "Midlands",
+        "Highlands"
+      ]
+    },
+    {
+      "name": "Lon",
+      "biomes": [
+        "Cracks",
+        "Mounds",
+        "Craters",
+        "IceFields"
+      ]
+    },
+    {
+      "name": "Merbel",
+      "biomes": [
+        "DeepOceans",
+        "Oceans",
+        "Shallows",
+        "Shores",
+        "Lowlands",
+        "Midlands",
+        "Highlands",
+        "Tundras",
+        "Mountains",
+        "Craters",
+        "FrozenLake"
+      ]
+    },
+    {
+      "name": "Minmus",
+      "biomes": [
+        "Flats",
+        "Great Flats",
+        "Greater Flats",
+        "Highlands",
+        "Lesser Flats",
+        "Lowlands",
+        "Midlands",
+        "Poles",
+        "Slopes"
+      ]
+    },
+    {
+      "name": "Moho",
+      "biomes": [
+        "Canyon",
+        "Central Lowlands",
+        "Highlands",
+        "Midlands",
+        "Minor Craters",
+        "North Pole",
+        "Northern Sinkhole",
+        "Northern Sinkhole Ridge",
+        "South Eastern Lowlands",
+        "South Pole",
+        "South Western Lowlands",
+        "Western Lowlands"
+      ]
+    },
+    {
+      "name": "Mracksis",
+      "biomes": [
+        "Maria",
+        "LesserMare",
+        "IceFields",
+        "Glaciers",
+        "Planitia",
+        "TholinField"
+      ]
+    },
+    {
+      "name": "Mun",
+      "biomes": [
+        "Canyons",
+        "East Crater",
+        "East Farside Crater",
+        "Farside Basin",
+        "Farside Crater",
+        "Highland Craters",
+        "Highlands",
+        "Lowlands",
+        "Midland Craters",
+        "Midlands",
+        "Northern Basin",
+        "Northwest Crater",
+        "Polar Crater",
+        "Polar Lowlands",
+        "Poles",
+        "Southwest Crater",
+        "Twin Craters"
+      ]
+    },
+    {
+      "name": "Nissee",
+      "biomes": [
+        "Maximus Crater",
+        "Companion Craters",
+        "Ancient Craters",
+        "Young Craters",
+        "Poles",
+        "Valerian Region"
+      ]
+    },
+    {
+      "name": "Noj",
+      "biomes": [
+        "Core",
+        "CraggyHills",
+        "FluffyHills",
+        "Equator",
+        "Pockmarks"
+      ]
+    },
+    {
+      "name": "Ovin",
+      "biomes": [
+        "Valleys",
+        "Divets",
+        "Crushlands",
+        "Flats",
+        "Highlands",
+        "Hills",
+        "Craters",
+        "DustyCrater",
+        "Nedzerfjord",
+        "ValleyofDespair",
+        "GreatRift",
+        "GreatRiftDivergence"
+      ]
+    },
+    {
+      "name": "Ovok",
+      "biomes": [
+        "Macula Oblongata",
+        "Tasi Region",
+        "Scarring"
+      ]
+    },
+    {
+      "name": "Plock",
+      "biomes": [
+        "Ayarza Hills",
+        "Chulak Hills",
+        "Rosas Hills",
+        "Sateda Region",
+        "Geelan Region",
+        "Abydos Region",
+        "Eleusis Plains",
+        "Dakara Plains",
+        "Vorash Mountains",
+        "Celestis Basin",
+        "Langara Foothills",
+        "Lyrae Chaos",
+        "Nexis Region"
+      ]
+    },
+    {
+      "name": "Pol",
+      "biomes": [
+        "Highlands",
+        "Lowlands",
+        "Midlands",
+        "Poles"
+      ]
+    },
+    {
+      "name": "Polta",
+      "biomes": [
+        "Nockmaar Foothills",
+        "Zuev Hills",
+        "Subotai Hills",
+        "Bray Plateau",
+        "Falkor Plains",
+        "Salcedo Plains",
+        "Arsonide Plains",
+        "Eidilleg Valley",
+        "Vultan Region",
+        "Artyomka Region",
+        "Jareth Labyrinth"
+      ]
+    },
+    {
+      "name": "Priax",
+      "biomes": [
+        "Badie Region",
+        "Leading Craters",
+        "Sido Region",
+        "Trailing Craters",
+        "Crater Chains"
+      ]
+    },
+    {
+      "name": "Rask",
+      "biomes": [
+        "DeepLavaOceans",
+        "LavaOceans",
+        "MoltenCoasts",
+        "IgneousCliffs",
+        "IgneousHills",
+        "Crevasses",
+        "Shredlands",
+        "Midlands",
+        "Mountains",
+        "Ridges"
+      ]
+    },
+    {
+      "name": "Rusk",
+      "biomes": [
+        "DeepLavaOceans",
+        "LavaOceans",
+        "MoltenCoasts",
+        "IgneousCliffs",
+        "IgneousHills",
+        "Craters",
+        "Lowlands",
+        "Midlands",
+        "Highlands",
+        "Peaks"
+      ]
+    },
+    {
+      "name": "Slate",
+      "biomes": [
+        "Mount Nehelennia",
+        "Yahel Mountains",
+        "Sombor Mountains",
+        "Dorian Crater",
+        "Impact Craters",
+        "Northern Sea",
+        "Southern Sea",
+        "Eudae Bay",
+        "Robau Bay",
+        "Augustus Valley",
+        "Gorgoroth Plateau",
+        "Muil Hills",
+        "Dagorlad Region",
+        "Poles",
+        "Southern Islands",
+        "Northern Islands",
+        "Kowgan Archipelago",
+        "Tygoo Valley",
+        "Orodruin Chaos"
+      ]
+    },
+    {
+      "name": "Soden",
+      "biomes": [
+        "IcePlains",
+        "MajorGlaciers",
+        "MinorGlaciers",
+        "MajorCanyons",
+        "MinorCanyons",
+        "TigerStripes",
+        "SouthPole",
+        "Liber"
+      ]
+    },
+    {
+      "name": "Tal",
+      "biomes": [
+        "Dunrana Region",
+        "Sigley Region"
+      ]
+    },
+    {
+      "name": "Tekto",
+      "biomes": [
+        "Geomagnetic Anomaly",
+        "Polar Rifts",
+        "Mount Avaritia",
+        "Twin Lakes",
+        "Southern Islands",
+        "Belial Island",
+        "Rhat Island",
+        "Malebolge Peninsula",
+        "Witvoogd Peninsula",
+        "Sarbian Islands",
+        "Medikohl Lake",
+        "Antenor Lake",
+        "Vexxus Lake",
+        "Tande Region",
+        "Pozine Region",
+        "Mammon Region",
+        "Det Region",
+        "Adnomimon Region",
+        "Dis Region",
+        "Sylandro Region",
+        "Silisko Sea",
+        "Inland Lagoons"
+      ]
+    },
+    {
+      "name": "Thatmo",
+      "biomes": [
+        "Kadavo Plains",
+        "Dathomir Plains",
+        "Chuchito Plains",
+        "Bardotta Hills",
+        "Serenno Hills",
+        "Onderon Hills",
+        "Rhat Highlands",
+        "Kell Region",
+        "Abafar Region",
+        "Ryloth Region",
+        "Felucia Region",
+        "Umbara Region",
+        "Cybutek Region"
+      ]
+    },
+    {
+      "name": "Tylo",
+      "biomes": [
+        "Gagarin Crater",
+        "Galileio Crater",
+        "Grissom Crater",
+        "Highlands",
+        "Lowlands",
+        "Mara",
+        "Midlands",
+        "Minor Craters",
+        "Tycho Crater"
+      ]
+    },
+    {
+      "name": "Umod",
+      "biomes": [
+        "Pits",
+        "Fissures",
+        "Midlands",
+        "Mountains",
+        "Peaks",
+        "Equator"
+      ]
+    },
+    {
+      "name": "Vall",
+      "biomes": [
+        "Highlands",
+        "Lowlands",
+        "Midlands",
+        "Mountains",
+        "Northeast Basin",
+        "Northwest Basin",
+        "Poles",
+        "Southern Basin",
+        "Southern Valleys"
+      ]
+    },
+    {
+      "name": "Vant",
+      "biomes": [
+        "Highlands",
+        "Lowlands",
+        "Valleys",
+        "Craters",
+        "Crags",
+        "Mudcano",
+        "Equator"
+      ]
+    },
+    {
+      "name": "Wal",
+      "biomes": [
+        "Chronister Valley",
+        "Misucat Valley",
+        "Boreth Mountains",
+        "Gault Mountains",
+        "Pandro Mountains",
+        "Manark Crater Chain",
+        "Kessik Region",
+        "Moach Region",
+        "Diomedea Region",
+        "Dozaria Region",
+        "Volchok Region",
+        "Eminiar Region",
+        "Pooza Region",
+        "Draylax Plains",
+        "Soukara Plains",
+        "Levinius Plain",
+        "Andor Crater"
+      ]
+    },
+    {
+      "name": "Zore",
+      "biomes": [
+        "MetalLowlands",
+        "RockyLowlands",
+        "RockyHighlands",
+        "Craters",
+        "MajorCraters",
+        "CraggleField"
+      ]
+    }
+  ],
+  "buildings": [],
+  "observedAt": "1970-01-01T00:00:00Z",
+  "systems": [
+    {
+      "name": "Sun",
+      "parent": null
+    },
+    {
+      "name": "Moho",
+      "parent": "Sun"
+    },
+    {
+      "name": "Eve",
+      "parent": "Sun"
+    },
+    {
+      "name": "Gilly",
+      "parent": "Eve"
+    },
+    {
+      "name": "Kerbin",
+      "parent": "Sun"
+    },
+    {
+      "name": "Mun",
+      "parent": "Kerbin"
+    },
+    {
+      "name": "Minmus",
+      "parent": "Kerbin"
+    },
+    {
+      "name": "Duna",
+      "parent": "Sun"
+    },
+    {
+      "name": "Ike",
+      "parent": "Duna"
+    },
+    {
+      "name": "Dres",
+      "parent": "Sun"
+    },
+    {
+      "name": "Jool",
+      "parent": "Sun"
+    },
+    {
+      "name": "Laythe",
+      "parent": "Jool"
+    },
+    {
+      "name": "Vall",
+      "parent": "Jool"
+    },
+    {
+      "name": "Tylo",
+      "parent": "Jool"
+    },
+    {
+      "name": "Bop",
+      "parent": "Jool"
+    },
+    {
+      "name": "Pol",
+      "parent": "Jool"
+    },
+    {
+      "name": "Eeloo",
+      "parent": "Sarnus"
+    },
+    {
+      "name": "Puf",
+      "parent": "Tuun"
+    },
+    {
+      "name": "Rask",
+      "parent": "RaskRuskBarycenter"
+    },
+    {
+      "name": "RaskRuskBarycenter",
+      "parent": "Tuun"
+    },
+    {
+      "name": "Rusk",
+      "parent": "RaskRuskBarycenter"
+    },
+    {
+      "name": "Tuun",
+      "parent": "Sun"
+    },
+    {
+      "name": "Archae",
+      "parent": "Ervo"
+    },
+    {
+      "name": "Crokslev",
+      "parent": "Sun"
+    },
+    {
+      "name": "Edas",
+      "parent": "Sun"
+    },
+    {
+      "name": "Ervo",
+      "parent": "Sun"
+    },
+    {
+      "name": "Flake",
+      "parent": "Mracksis"
+    },
+    {
+      "name": "Geito",
+      "parent": "Sun"
+    },
+    {
+      "name": "Havous",
+      "parent": "Sun"
+    },
+    {
+      "name": "Kal",
+      "parent": "Havous"
+    },
+    {
+      "name": "KiKi",
+      "parent": "Havous"
+    },
+    {
+      "name": "LintMikey",
+      "parent": "Sun"
+    },
+    {
+      "name": "Lon",
+      "parent": "Soden"
+    },
+    {
+      "name": "Mracksis",
+      "parent": "Sun"
+    },
+    {
+      "name": "Soden",
+      "parent": "Sun"
+    },
+    {
+      "name": "Vant",
+      "parent": "Sun"
+    },
+    {
+      "name": "Zore",
+      "parent": "Sun"
+    },
+    {
+      "name": "Nissee",
+      "parent": "Neidon"
+    },
+    {
+      "name": "Thatmo",
+      "parent": "Neidon"
+    },
+    {
+      "name": "Neidon",
+      "parent": "Sun"
+    },
+    {
+      "name": "Plock",
+      "parent": "Sun"
+    },
+    {
+      "name": "Sarnus",
+      "parent": "Sun"
+    },
+    {
+      "name": "Urlum",
+      "parent": "Sun"
+    },
+    {
+      "name": "Karen",
+      "parent": "Plock"
+    },
+    {
+      "name": "Hale",
+      "parent": "Sarnus"
+    },
+    {
+      "name": "Ovok",
+      "parent": "Sarnus"
+    },
+    {
+      "name": "Slate",
+      "parent": "Sarnus"
+    },
+    {
+      "name": "Tekto",
+      "parent": "Sarnus"
+    },
+    {
+      "name": "Polta",
+      "parent": "Urlum"
+    },
+    {
+      "name": "Priax",
+      "parent": "Urlum"
+    },
+    {
+      "name": "Tal",
+      "parent": "Wal"
+    },
+    {
+      "name": "Wal",
+      "parent": "Urlum"
+    },
+    {
+      "name": "Axod",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Bis",
+      "parent": "Dorau"
+    },
+    {
+      "name": "Charr",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Debdeb",
+      "parent": "Sun"
+    },
+    {
+      "name": "Donk",
+      "parent": "Gurdamma"
+    },
+    {
+      "name": "Dorau",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Gup",
+      "parent": "Gurdamma"
+    },
+    {
+      "name": "Gurdamma",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Lapat",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Ovin",
+      "parent": "Debdeb"
+    },
+    {
+      "name": "Umod",
+      "parent": "Axod"
+    },
+    {
+      "name": "ProtoplanetaryDisk-Innermost",
+      "parent": null
+    },
+    {
+      "name": "ProtoplanetaryDisk-Lapat/Glumo",
+      "parent": null
+    },
+    {
+      "name": "ProtoplanetaryDisk-Glumo/Axod",
+      "parent": null
+    },
+    {
+      "name": "ProtoplanetaryDisk-Axod/Dorau",
+      "parent": null
+    },
+    {
+      "name": "ProtoplanetaryDisk-BeyondDorau",
+      "parent": null
+    },
+    {
+      "name": "OvinBelt",
+      "parent": null
+    },
+    {
+      "name": "GurdammaRingInner",
+      "parent": null
+    },
+    {
+      "name": "GurdammaRingOuter",
+      "parent": null
+    },
+    {
+      "name": "GlumoRings",
+      "parent": null
+    },
+    {
+      "name": "AxodRings",
+      "parent": null
+    },
+    {
+      "name": "Glumo",
+      "parent": "Tuun"
+    },
+    {
+      "name": "Merbel",
+      "parent": "Glumo"
+    },
+    {
+      "name": "Noj",
+      "parent": "Glumo"
+    },
+    {
+      "name": "Edas",
+      "parent": null
+    },
+    {
+      "name": "Vant",
+      "parent": null
+    },
+    {
+      "name": "Zore",
+      "parent": null
+    },
+    {
+      "name": "LintMikey",
+      "parent": null
+    },
+    {
+      "name": "Crokslev",
+      "parent": null
+    },
+    {
+      "name": "Geito",
+      "parent": null
+    },
+    {
+      "name": "Havous",
+      "parent": null
+    },
+    {
+      "name": "Kal",
+      "parent": null
+    },
+    {
+      "name": "KiKi",
+      "parent": null
+    },
+    {
+      "name": "Mracksis",
+      "parent": null
+    },
+    {
+      "name": "Flake",
+      "parent": null
+    },
+    {
+      "name": "Ervo",
+      "parent": null
+    },
+    {
+      "name": "Archae",
+      "parent": null
+    },
+    {
+      "name": "Soden",
+      "parent": null
+    },
+    {
+      "name": "Lon",
+      "parent": null
+    },
+    {
+      "name": "Archae",
+      "parent": null
+    },
+    {
+      "name": "Crokslev",
+      "parent": null
+    },
+    {
+      "name": "Edas",
+      "parent": null
+    },
+    {
+      "name": "Ervo",
+      "parent": null
+    },
+    {
+      "name": "Flake",
+      "parent": null
+    },
+    {
+      "name": "Geito",
+      "parent": null
+    },
+    {
+      "name": "Havous",
+      "parent": null
+    },
+    {
+      "name": "Kal",
+      "parent": null
+    },
+    {
+      "name": "KiKi",
+      "parent": null
+    },
+    {
+      "name": "LintMikey",
+      "parent": null
+    },
+    {
+      "name": "Lon",
+      "parent": null
+    },
+    {
+      "name": "Mracksis",
+      "parent": null
+    },
+    {
+      "name": "Soden",
+      "parent": null
+    },
+    {
+      "name": "Vant",
+      "parent": null
+    },
+    {
+      "name": "Zore",
+      "parent": null
+    },
+    {
+      "name": "Hale",
+      "parent": null
+    },
+    {
+      "name": "Ovok",
+      "parent": null
+    },
+    {
+      "name": "Slate",
+      "parent": null
+    },
+    {
+      "name": "Tekto",
+      "parent": null
+    },
+    {
+      "name": "Tal",
+      "parent": null
+    },
+    {
+      "name": "Wal",
+      "parent": null
+    },
+    {
+      "name": "Priax",
+      "parent": null
+    },
+    {
+      "name": "Polta",
+      "parent": null
+    },
+    {
+      "name": "Thatmo",
+      "parent": null
+    },
+    {
+      "name": "Nissee",
+      "parent": null
+    },
+    {
+      "name": "Plock",
+      "parent": null
+    },
+    {
+      "name": "Karen",
+      "parent": null
+    },
+    {
+      "name": "Hale",
+      "parent": null
+    },
+    {
+      "name": "Karen",
+      "parent": null
+    },
+    {
+      "name": "Nissee",
+      "parent": null
+    },
+    {
+      "name": "Plock",
+      "parent": null
+    },
+    {
+      "name": "Polta",
+      "parent": null
+    },
+    {
+      "name": "Priax",
+      "parent": null
+    },
+    {
+      "name": "Slate",
+      "parent": null
+    },
+    {
+      "name": "Tal",
+      "parent": null
+    },
+    {
+      "name": "Tekto",
+      "parent": null
+    },
+    {
+      "name": "Thatmo",
+      "parent": null
+    },
+    {
+      "name": "Wal",
+      "parent": null
+    },
+    {
+      "name": "Bop",
+      "parent": null
+    },
+    {
+      "name": "Dres",
+      "parent": null
+    },
+    {
+      "name": "Duna",
+      "parent": null
+    },
+    {
+      "name": "Eeloo",
+      "parent": null
+    },
+    {
+      "name": "Eve",
+      "parent": null
+    },
+    {
+      "name": "Gilly",
+      "parent": null
+    },
+    {
+      "name": "Ike",
+      "parent": null
+    },
+    {
+      "name": "Kerbin",
+      "parent": null
+    },
+    {
+      "name": "Laythe",
+      "parent": null
+    },
+    {
+      "name": "Minmus",
+      "parent": null
+    },
+    {
+      "name": "Moho",
+      "parent": null
+    },
+    {
+      "name": "Mun",
+      "parent": null
+    },
+    {
+      "name": "Pol",
+      "parent": null
+    },
+    {
+      "name": "Tylo",
+      "parent": null
+    },
+    {
+      "name": "Vall",
+      "parent": null
+    },
+    {
+      "name": "Kerbin",
+      "parent": null
+    },
+    {
+      "name": "Mun",
+      "parent": null
+    },
+    {
+      "name": "Duna",
+      "parent": null
+    },
+    {
+      "name": "Gilly",
+      "parent": null
+    },
+    {
+      "name": "Eve",
+      "parent": null
+    },
+    {
+      "name": "Moho",
+      "parent": null
+    },
+    {
+      "name": "Ike",
+      "parent": null
+    },
+    {
+      "name": "Eeloo",
+      "parent": null
+    },
+    {
+      "name": "Minmus",
+      "parent": null
+    },
+    {
+      "name": "Laythe",
+      "parent": null
+    },
+    {
+      "name": "Dres",
+      "parent": null
+    },
+    {
+      "name": "Vall",
+      "parent": null
+    },
+    {
+      "name": "Tylo",
+      "parent": null
+    },
+    {
+      "name": "Bop",
+      "parent": null
+    },
+    {
+      "name": "Pol",
+      "parent": null
+    },
+    {
+      "name": "Gurdamma",
+      "parent": null
+    },
+    {
+      "name": "Donk",
+      "parent": null
+    },
+    {
+      "name": "Gup",
+      "parent": null
+    },
+    {
+      "name": "Ovin",
+      "parent": null
+    },
+    {
+      "name": "Charr",
+      "parent": null
+    },
+    {
+      "name": "Lapat",
+      "parent": null
+    },
+    {
+      "name": "Axod",
+      "parent": null
+    },
+    {
+      "name": "Umod",
+      "parent": null
+    },
+    {
+      "name": "Bis",
+      "parent": null
+    },
+    {
+      "name": "Axod",
+      "parent": null
+    },
+    {
+      "name": "Bis",
+      "parent": null
+    },
+    {
+      "name": "Charr",
+      "parent": null
+    },
+    {
+      "name": "Donk",
+      "parent": null
+    },
+    {
+      "name": "Gup",
+      "parent": null
+    },
+    {
+      "name": "Gurdamma",
+      "parent": null
+    },
+    {
+      "name": "Lapat",
+      "parent": null
+    },
+    {
+      "name": "Ovin",
+      "parent": null
+    },
+    {
+      "name": "Umod",
+      "parent": null
+    },
+    {
+      "name": "Rask",
+      "parent": null
+    },
+    {
+      "name": "Rusk",
+      "parent": null
+    },
+    {
+      "name": "Puf",
+      "parent": null
+    },
+    {
+      "name": "Merbel",
+      "parent": null
+    },
+    {
+      "name": "Noj",
+      "parent": null
+    },
+    {
+      "name": "Merbel",
+      "parent": null
+    },
+    {
+      "name": "Noj",
+      "parent": null
+    },
+    {
+      "name": "Puf",
+      "parent": null
+    },
+    {
+      "name": "Rask",
+      "parent": null
+    },
+    {
+      "name": "Rusk",
+      "parent": null
+    }
+  ],
+  "wolf": {
+    "status": "unavailable",
+    "reason": "REVIEW TEMPLATE: no operational game data",
+    "observedUt": 0,
+    "depots": [],
+    "allowedResources": []
+  },
+  "gameDate": "REVIEW TEMPLATE: no operational game data",
+  "balances": {
+    "funds": 0,
+    "science": 0,
+    "observedAt": "1970-01-01T00:00:00Z",
+    "basis": "REVIEW TEMPLATE: no operational game data",
+    "scope": "synthetic-review-only"
+  },
+  "productionObservedAt": "1970-01-01T00:00:00Z",
+  "_reviewOnly": true
+}

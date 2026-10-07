@@ -1,0 +1,15 @@
+# Anchored surface depots
+
+Every surface production base in the user's network may be held by Expanse Foundations. Its hold deliberately keeps the loaded vessel `packed`, including at 1×, to prevent ground drift. A packed surface base is therefore a normal endpoint, not an exceptional state that users must release to register.
+
+## Registration compatibility
+
+Registration is metadata-only: it records selected `Part.persistentId` values and an anchor member. The window and registry may enumerate loaded parts of an active, landed/splashed vessel packed by Expanse Foundations, verified through its optional `Hold.IsHeld(Vessel)` API. They continue to reject arbitrary packed vessels. No physical inventory write is implied by registration. Docked visitor parts remain unchecked, and existing registrations are not modified.
+
+## Inventory and delivery boundary
+
+The registration-only change exposed a second gap: the observer rejected the packed base and relied on the primary depot's member map, which belongs to the orbital Fuel Depot when Minmus Mining is active. The read-only observation path now builds a bounded map of the active anchored vessel's selected parts and reports their currently loaded `PartResource` quantities. The separate Manager display path locates each registration by its anchor among KSP's vessels. Loaded vessels show current `PartResource` values. For an unloaded vessel, the bridge tries a read-only per-registered-tank projection from Background Resource Processing 0.2.7's inventories: it maps `ProtoPartSnapshot.flightID` and resource name to unique BRP inventories and uses the same `Amount + Rate * (UT - LastChangepoint)` clamped formula as BRP's current-resource query. If the provider is absent or the mapping is incomplete, the row is explicitly labeled **KSP snapshot** and uses `ProtoVessel` resource values instead. Neither display path is passed to the physical-effects gateway. This also avoids reporting a remote depot's selected parts as missing merely because another vessel is active. The BRP projection has been built and compiled but still needs a live unloaded-vessel comparison against KSP/BRP telemetry before it is considered validated.
+
+The BRP physical gateway still requires an unpacked active vessel. An anchored base cannot yet dispatch or receive physical resources while held. Do not release the foundation to make a trade work. Extend the provider gateway only after proving exact selected-member read/write, BRP synchronization, rollback, save/reload, resource production catch-up, and loaded/unloaded transitions on an anchored base. Until then, route attempts must hold with a specific unsupported-endpoint reason; they must not substitute a stale UI snapshot or a proto edit.
+
+The user has identified the Minmus Mining vessel as a production base. The 2026-09-26 selected save showed 43 unregistered resource-bearing parts on it, including LF/OX, monopropellant, Ore, batteries, and other resources. The registration window showed zero candidates because it rejected the packed foundation before enumerating parts. This observation motivated the registration-only compatibility change.

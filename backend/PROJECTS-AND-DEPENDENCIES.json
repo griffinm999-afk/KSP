@@ -1,0 +1,597 @@
+[
+  {
+    "project": "ExpansePlatform/dev/ActualFrameChecks/ActualFrameChecks.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.BrpColony.Tests/Expanse.BrpColony.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": [
+      "..\\..\\src\\Expanse.BrpColony\\bin\\Release\\net481\\Expanse.BrpColony.dll",
+      "$(KspRoot)\\KSP_x64_Data\\Managed\\Assembly-CSharp.dll",
+      "$(KspRoot)\\KSP_x64_Data\\Managed\\UnityEngine.dll",
+      "$(KspRoot)\\KSP_x64_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "$(KspRoot)\\GameData\\BackgroundResourceProcessing\\Plugins\\BackgroundResourceProcessing.dll",
+      "$(KspRoot)\\GameData\\000_USITools\\USITools.dll",
+      "$(KspRoot)\\GameData\\000_Harmony\\0Harmony.dll",
+      "$(KspRoot)\\KSP_x64_Data\\Managed\\Mono.Cecil.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Clock.Observer/Expanse.Clock.Observer.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Clock.SmokeHarness/Expanse.Clock.SmokeHarness.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.AudioModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.Acceptance/Expanse.Colony.Acceptance.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.Adoption.UiTests/Expanse.Colony.Adoption.UiTests.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.CopyGenerator/Expanse.Colony.CopyGenerator.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.EnvironmentConfigObservation.Tests/Expanse.Colony.EnvironmentConfigObservation.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.KspHarness/Expanse.Colony.KspHarness.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.ScreenCaptureModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.ManagementClientSmoke/Expanse.Colony.ManagementClientSmoke.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.ManagementIpcSmoke/Expanse.Colony.ManagementIpcSmoke.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.PowerOperator.Tests/Expanse.Colony.PowerOperator.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.RuntimeDriver/Expanse.Colony.RuntimeDriver.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.UiSmoke/Expanse.Colony.UiSmoke.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.UtilityContracts/Expanse.Colony.UtilityContracts.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": [
+      "../Expanse.Wolf.Contract.Tests/bin/Release/net472/Mono.Cecil.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.UtilityModules.Tests/Expanse.Colony.UtilityModules.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Colony.UtilityReflection.Tests/Expanse.Colony.UtilityReflection.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.ColonyPlacement.KspHarness/Expanse.ColonyPlacement.KspHarness.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.PhysicsModule.dll",
+      "$(ColonyPlacementFrozenBridge)\\Expanse.WorldBridge.dll",
+      "$(ColonyPlacementFrozenBridge)\\Expanse.Domain.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.ColonyPlacement.PackageTests/Expanse.ColonyPlacement.PackageTests.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.PhysicsModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.ColonyPlacement.Tests/Expanse.ColonyPlacement.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NET.Test.Sdk",
+        "version": "17.8.0"
+      },
+      {
+        "id": "xunit",
+        "version": "2.5.3"
+      },
+      {
+        "id": "xunit.runner.visualstudio",
+        "version": "2.5.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Depot.M2.SmokeHarness/Expanse.Depot.M2.SmokeHarness.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.AudioModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Depot.Observer/Expanse.Depot.Observer.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Logistics.Adapter.Tests/Expanse.Logistics.Adapter.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Manager.UiSmoke/Expanse.Manager.UiSmoke.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.ProductionTelemetry.Tests/Expanse.ProductionTelemetry.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NET.Test.Sdk",
+        "version": "17.8.0"
+      },
+      {
+        "id": "xunit",
+        "version": "2.5.3"
+      },
+      {
+        "id": "xunit.runner.visualstudio",
+        "version": "2.5.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Recovery.HostFixture/Expanse.Recovery.HostFixture.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Recovery.KspFixture/Expanse.Recovery.KspFixture.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.AudioModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.RemoteBrpCandidate.Tests/Expanse.RemoteBrpCandidate.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/Expanse.Wolf.Contract.Tests/Expanse.Wolf.Contract.Tests.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [],
+    "hintPaths": [
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\Assembly-CSharp.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\USI_WOLF.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\WOLFUI.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_USITools\\USITools.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/PerformanceChecks/PerformanceChecks.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/RosterCensusChecks/RosterCensusChecks.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/dev/USILifeSupport.Detached/USILifeSupport.Detached.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": [
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\Assembly-CSharp.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.PhysicsModule.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_Harmony\\0Harmony.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_USITools\\USITools.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\LifeSupport\\USILifeSupport.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\USI_WOLF.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\WOLFUI.dll",
+      "../../src/Expanse.WorldBridge/bin/Release/net472/Expanse.WorldBridge.dll",
+      "../../src/Expanse.Domain/bin/Release/net472/Expanse.Domain.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/dev/USILifeSupport.HookRegistration/USILifeSupport.HookRegistration.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\Assembly-CSharp.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.CoreModule.dll",
+      "C:\\Kerbal Space Program\\KSP_x64_Data\\Managed\\UnityEngine.PhysicsModule.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_Harmony\\0Harmony.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_USITools\\USITools.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\LifeSupport\\USILifeSupport.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\USI_WOLF.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\WOLFUI.dll",
+      "../../src/Expanse.WorldBridge/bin/Release/net472/Expanse.WorldBridge.dll",
+      "../../src/Expanse.Domain/bin/Release/net472/Expanse.Domain.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.BrpColony/Expanse.BrpColony.csproj",
+    "frameworks": [
+      "net481"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net481",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspRoot)\\GameData\\000_USITools\\USITools.dll",
+      "$(KspRoot)\\GameData\\BackgroundResourceProcessing\\Plugins\\BackgroundResourceProcessing.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.Clock.Core/Expanse.Clock.Core.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.Clock.Host/Expanse.Clock.Host.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.Data.Sqlite.Core",
+        "version": "8.0.19"
+      },
+      {
+        "id": "SQLitePCLRaw.bundle_e_sqlite3",
+        "version": "2.1.6"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.Clock.Manager/Expanse.Clock.Manager.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.Domain/Expanse.Domain.csproj",
+    "frameworks": [
+      "net472;net8.0"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.Launcher/Expanse.Launcher.csproj",
+    "frameworks": [
+      "net8.0-windows"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.TrackingStation/Expanse.TrackingStation.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.IMGUIModule.dll",
+      "$(KspManagedDir)\\UnityEngine.InputLegacyModule.dll",
+      "$(KspManagedDir)\\UnityEngine.AnimationModule.dll",
+      "$(KspManagedDir)\\UnityEngine.TextRenderingModule.dll",
+      "$(KspManagedDir)\\UnityEngine.UI.dll",
+      "$(KspManagedDir)\\UnityEngine.UIModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/src/Expanse.WorldBridge/Expanse.WorldBridge.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KspManagedDir)\\Assembly-CSharp.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_Harmony\\0Harmony.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\USI_WOLF.dll",
+      "C:\\Kerbal Space Program\\GameData\\UmbraSpaceIndustries\\WOLF\\WOLFUI.dll",
+      "C:\\Kerbal Space Program\\GameData\\000_USITools\\USITools.dll",
+      "$(KspManagedDir)\\UnityEngine.dll",
+      "$(KspManagedDir)\\UnityEngine.CoreModule.dll",
+      "$(KspManagedDir)\\UnityEngine.PhysicsModule.dll",
+      "$(KspManagedDir)\\UnityEngine.JSONSerializeModule.dll",
+      "$(KspManagedDir)\\UnityEngine.IMGUIModule.dll",
+      "$(KspManagedDir)\\UnityEngine.TextRenderingModule.dll",
+      "$(KspManagedDir)\\UnityEngine.AnimationModule.dll"
+    ]
+  },
+  {
+    "project": "ExpansePlatform/tests/Expanse.Clock.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [
+      {
+        "id": "coverlet.collector",
+        "version": "6.0.0"
+      },
+      {
+        "id": "Microsoft.NET.Test.Sdk",
+        "version": "17.8.0"
+      },
+      {
+        "id": "xunit",
+        "version": "2.5.3"
+      },
+      {
+        "id": "xunit.runner.visualstudio",
+        "version": "2.5.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "ExpansePlatform/tests/Expanse.TrackingStation.Tests/Expanse.TrackingStation.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  },
+  {
+    "project": "Related/ExpanseFoundations/dev/Foundations.DevTests.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": []
+  },
+  {
+    "project": "Related/ExpanseFoundations/src/ExpanseFoundations.csproj",
+    "frameworks": [
+      "net472"
+    ],
+    "packages": [
+      {
+        "id": "Microsoft.NETFramework.ReferenceAssemblies.net472",
+        "version": "1.0.3"
+      }
+    ],
+    "hintPaths": [
+      "$(KSPDIR)\\GameData\\000_Harmony\\0Harmony.dll"
+    ]
+  },
+  {
+    "project": "Related/ExpanseFoundations/tests/Foundations.Tests.csproj",
+    "frameworks": [
+      "net8.0"
+    ],
+    "packages": [],
+    "hintPaths": []
+  }
+]

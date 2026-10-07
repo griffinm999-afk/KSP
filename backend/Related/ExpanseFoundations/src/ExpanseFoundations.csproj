@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>ExpanseFoundations</AssemblyName>
+    <Version>0.2.0</Version>
+    <LangVersion>7.3</LangVersion>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <KSPDIR Condition="'$(KSPDIR)' == ''">C:\Kerbal Space Program</KSPDIR>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3" PrivateAssets="all" />
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\Assembly*.dll"><Private>false</Private></Reference>
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll"><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(KSPDIR)\GameData\000_Harmony\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Compile Include="*.cs" />
+    <Compile Include="..\core\*.cs" />
+  </ItemGroup>
+</Project>

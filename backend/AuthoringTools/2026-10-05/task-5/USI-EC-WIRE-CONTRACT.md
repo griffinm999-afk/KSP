@@ -1,0 +1,15 @@
+Optional additions to each `colony.vessels[]`; existing wire version and producer rows stay unchanged.
+
+`lifeSupport`: `{status: "partial"|"unavailable", reason, observedUt, supply: SupplyStream|null, crewElectricity: EcStream|null}`.
+
+Both streams: `sampleUt`, `processedEndUt`, `intervalGameSeconds`, `captureSequence`, `crewCount`, `timeFactor`.
+Supply adds `recyclerMultiplier`, `grossSuppliesPerSecond`, `grossMulchPerSecond`, `configuredSuppliesPerSecond`, `configuredMulchPerSecond`, `suppliesConsumed`, `mulchProduced`.
+EC adds `configuredEcPerSecond`, `electricityConsumed`.
+
+Consumed/produced fields are accepted physical **amounts**, not rates; divide by the original intervalGameSeconds. MulchProduced is accepted stored Mulch; dumped excess is excluded. Configured rates describe intent at that callback; gross supply/waste rates precede the applied recycler multiplier. Recycler does not reduce crew EC.
+Processed interval is [processedEndUt-intervalGameSeconds, processedEndUt]. sampleUt is observation UT. If processedEndUt trails sampleUt, this is catch-up evidence, not a current live rate. Supply and EC complete independently. Null means unobserved/failed/stale/unloaded/EVA; an observed zero is zero. Stream crewCount is covered crew, not global population. Latest streams expire after 10 game seconds and on context, ownership or mode change. Outer envelope sessionId/loadEpoch supplies reset identity.
+
+`powerAverage`: null until a qualified completed reporting window, otherwise `{windowId, windowStartUt, windowEndUt, windowGameSeconds, coveredGameSeconds, reportRealSeconds, ageRealSeconds, generationEc, consumptionEc, generationEcPerSecond, consumptionEcPerSecond, status, basis, reason}`.
+The reporting window is at least 60 monotonic real seconds. All vessel rows from the same window use the same windowId and window bounds. generationEc/consumptionEc are accepted amounts, without cached-callback duplication. Means divide by coveredGameSeconds, never by summed parallel-module durations. `status:"observed"` requires complete supported interval coverage; otherwise `partial` explicitly reports a measured subtotal over covered time. Unknown gaps are not zeros. For colony totals, combine matching windows: only full coverage permits a complete total; never sum the duration denominators. Partial amounts can be shown as measured subtotal with missing coverage, not full demand. `basis:"fulfilled-part-requests"` for unpacked observations; `supported-native-callbacks` for packed producer plus crew observations, whose owner coverage is always partial. Direct resource writes and unsupported owners are outside measured coverage. Age uses monotonic real seconds and expires at 120; context rollback and vessel mode transitions invalidate cached completed windows.
+
+Keep native production, crew demand and net inventory separate. Crew EC is already included in unpacked total EC consumption and packed native window consumption; do not add it again. No inventory delta attribution or time-left counters. No assumed 51-crew total.

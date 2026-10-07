@@ -1,0 +1,9 @@
+# Delivery setup labels and resource orders
+
+The Windows manager resolves saved depot IDs to their current registered names. Route and shipment rows show depot names, cargo, and game-relative time. The internal IDs remain unchanged and are not used as display labels. If a depot is no longer registered, the UI says "Former depot" rather than inventing a name.
+
+Route cargo supports several checked resources with a quantity for each. An "Every interval" order sends the complete saved route manifest. Its interval is entered as `days:hours:minutes`, using KSP's six-hour day.
+
+"When stock is low" offers one row per resource on the selected route. The user may check several rows, each with its own low point and target. Saving creates or reuses a single-resource derivative route for each selected resource, then saves one keep-stock rule for that resource. This preserves the current scheduler's one-resource keep-stock contract: only a resource that is low is dispatched, and accepted inbound cargo counts toward its target. Derivative routes carry the parent route's endpoints and travel duration and stay out of the normal route picker. The Activity page presents the original schedule name and resource instead of derivative IDs. A multi-resource save can partially succeed if the Host stops accepting commands; the UI stops immediately and asks the user to inspect Activity before retrying.
+
+"Keep full" uses the selected destination's registered tank capacity as both the low point and target. The accepted-state validation and planner allow equal low/target for this case. Any deficit after inbound cargo is considered for an order, capped by the route's per-resource cargo amount. This requires a known capacity for the same destination membership revision and hash pinned by the route. It does not imply that an unloaded physical depot can currently be credited or debited: production resource transfers remain capability-gated.

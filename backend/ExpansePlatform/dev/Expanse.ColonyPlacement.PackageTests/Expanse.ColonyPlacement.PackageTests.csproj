@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net472</TargetFramework><LangVersion>7.3</LangVersion><KspManagedDir>C:\Kerbal Space Program\KSP_x64_Data\Managed</KspManagedDir></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3" PrivateAssets="All" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(KspManagedDir)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(KspManagedDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(KspManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(KspManagedDir)\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <ProjectReference Include="../../src/Expanse.Domain/Expanse.Domain.csproj" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementContracts.cs" Link="ColonyPlacementContracts.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementState.cs" Link="ColonyPlacementState.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementRuntime.cs" Link="ColonyPlacementRuntime.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementColliderGeometry.cs" Link="ColonyPlacementColliderGeometry.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementParallaxSurface.cs" Link="ColonyPlacementParallaxSurface.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementGroundContacts.cs" Link="ColonyPlacementGroundContacts.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementGroundPositioning.cs" Link="ColonyPlacementGroundPositioning.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyPlacementDeploymentSafety.cs" Link="ColonyPlacementDeploymentSafety.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyTemplateCatalog.cs" Link="ColonyTemplateCatalog.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonySiteSurvey.cs" Link="ColonySiteSurvey.cs" />
+  </ItemGroup>
+</Project>

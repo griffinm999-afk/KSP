@@ -1,0 +1,13 @@
+{
+  "worldId": "review-world",
+  "save": "REVIEW TEMPLATE: no operational game data",
+  "savedAt": "1970-01-01T00:00:00Z",
+  "observedUt": 0,
+  "acceptedRevision": 0,
+  "shipments": [],
+  "history": [],
+  "arrivalReceipts": 0,
+  "routes": [],
+  "rules": [],
+  "_reviewOnly": true
+}

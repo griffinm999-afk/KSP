@@ -1,0 +1,22 @@
+{
+  "sourceVersion": 67,
+  "commit": "dea4cb2fe7cdb1332b7be3fcdd591dd9ebc0a007",
+  "node": "v24.19.0",
+  "exportBuild": {
+    "command": "node build.mjs",
+    "result": "passed with review templates"
+  },
+  "exportTests": {
+    "command": "node review-run-tests.mjs",
+    "testFiles": 18,
+    "passed": 18,
+    "failed": 0,
+    "snapshotDependentFilesExcluded": 8
+  },
+  "canonicalPrepublicationTests": {
+    "testFiles": 26,
+    "passed": 26,
+    "note": "Historical canonical v67 validation; not a claim that all26 pass with replacement templates"
+  },
+  "networkOrGameExecution": false
+}

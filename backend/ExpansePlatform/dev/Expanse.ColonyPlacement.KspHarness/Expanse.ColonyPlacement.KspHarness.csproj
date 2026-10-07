@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><TargetFramework>net472</TargetFramework><LangVersion>7.3</LangVersion><AssemblyName>Expanse.ColonyPlacement.KspHarness</AssemblyName><KspManagedDir>C:\Kerbal Space Program\KSP_x64_Data\Managed</KspManagedDir></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net472" Version="1.0.3" PrivateAssets="All" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(KspManagedDir)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine"><HintPath>$(KspManagedDir)\UnityEngine.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(KspManagedDir)\UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>$(KspManagedDir)\UnityEngine.PhysicsModule.dll</HintPath><Private>false</Private></Reference>
+    <ProjectReference Include="../../src/Expanse.WorldBridge/Expanse.WorldBridge.csproj" Condition="'$(ColonyPlacementFrozenBridge)' == ''" />
+    <ProjectReference Include="../../src/Expanse.Domain/Expanse.Domain.csproj" Condition="'$(ColonyPlacementFrozenBridge)' == ''" />
+    <Reference Include="Expanse.WorldBridge" Condition="'$(ColonyPlacementFrozenBridge)' != ''"><HintPath>$(ColonyPlacementFrozenBridge)\Expanse.WorldBridge.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Expanse.Domain" Condition="'$(ColonyPlacementFrozenBridge)' != ''"><HintPath>$(ColonyPlacementFrozenBridge)\Expanse.Domain.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

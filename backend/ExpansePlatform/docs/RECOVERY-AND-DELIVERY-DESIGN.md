@@ -1,0 +1,89 @@
+# Steps 3–5: recovery, virtual deliveries, and schedules
+
+September 26, 2026. Implementation contract for the overnight development task. The user authorized steps 3–5, the Astra → Sol → Luna process, and Luna maintaining the existing documentation site. This document refines the earlier external-simulation architecture and virtual-delivery designs under `C:\Users\griff\Documents\RoutineMissionManager-master\docs`. Those designs remain reference material; the implementation belongs to ExpansePlatform and does not depend on RMM.
+
+## Scope and ownership
+
+Astra owns this contract and reviews save/effect/provider boundaries. Sol fixes concrete interfaces, coordinates integration, and records evidence. Luna performs most implementation and testing, plus factual site updates. Reuse the two Luna workers sequentially as necessary. Keep a per-model work ledger, including rework; do not invent costs.
+
+Back up current source before implementation. Preserve the working clock, M2 depot registry and Manager stock readability changes. Work only in this local project, without forks or remote pushes. Use the existing muted development KSP with alternate publisher/view/effect pipe names and a separate Host database directory. A version-matched BRP installation may be copied from local production GameData into the isolated dev installation with its required local dependencies, after inspecting paths and backing up any replaced dev files. Never operate, restart, modify or deploy to the user's regular KSP or The Expanse save during this task. Never take desktop control. Leave the dev-only fixture disabled after testing.
+
+Deliver stage 3a first, then enable real writes only after its acceptance gate. Progress through 3b, 4 and 5 when evidence supports their dependencies. Independent pure-engine, Manager and site work can proceed while provider integration is unresolved. Do not equate an implementation with a passed gate. If a provider cannot safely support a resource endpoint, show a specific hold reason and continue all independent work; never fall back to unsynchronized proto writes.
+
+## Shared engine and transport
+
+Use one KSP-independent domain library for canonical command validation, ledger transitions, quantities, and state hashes. Prefer a dependency-light netstandard2.0 assembly consumed by both net472 bridge and net8 Host after proving it loads in local KSP. Do not add System.Runtime.Serialization to the bridge. Resolve actual local tool/reference compatibility before choosing otherwise. The Host alone schedules and proposes effects. The bridge uses the same deterministic transition rules to validate an effect and mirror its accepted outcome; it does not run a competing scheduler.
+
+Preserve the v1 clock/depot read channel. Introduce a separately bounded, worker-owned reliable effect/synchronization channel, rather than putting commands in the lossy clock mailbox. A request/response named-pipe exchange in which the bridge sends its immutable context/capsule and receives one pending command is acceptable. Use current-user-only Host pipes, explicit dev overrides, 64 KiB maximum framed UTF-8 payloads, partial-read handling, one effect in flight, bounded parsing/queues, and disconnect cancellation. Unity objects are accessed only on the game thread. The bridge never waits for SQLite, pipe I/O, Host catch-up or acknowledgements.
+
+Manager commands go through a versioned local Host command API, with stable client request IDs and the same command service used by schedules. The Manager owns no scheduling/resource rules and never reads or writes a live database or KSP save. Keep read-only clock compatibility when effect capability is unavailable.
+
+Sol owns the exact DTO/wire/file contract before Luna implementation. Prefer fixed bounded arrays and simple fields where KSP JSON compatibility requires them. Hash validated typed content canonically (including explicit field boundaries, ordered arrays, invariant finite numbers); do not depend on JSON property order or locale. Reject missing/empty identities, reused operation IDs with different payloads, unsupported required schema and non-finite/negative quantities.
+
+## 3a: save authority and recovery
+
+The selected KSP save is the authority. Use the existing persisted world GUID rather than inventing a second unrelated world identity. Add a versioned recovery ScenarioModule/capsule in the same save. A full bounded accepted state projection is allowed: world ID, checkpoint ID/ancestry, accepted ledger revision, monotonically increasing accepted command sequence, compaction watermark, counter, active routes/rules/shipments, and a bounded receipt tail. All current cargo ownership and active schedules must be recoverable without the Host database. Keep depot membership in the saved registry, referenced by stable depot ID and membership revision.
+
+Each confirmed load/revert creates a fresh execution token. Never infer this solely from UT. Until exact load-versus-scene discrimination is proven, conservative fencing on observed load/Scenario reconstruction is acceptable: extra reattachments may occur on scene changes, but accepted state must survive those transitions and obsolete commands must never execute. Document that behavior instead of claiming precise branch classification. Always suppress writes during unresolved loading, missing/contradictory registry context or unexpected backwards UT. Reattach from the actual loaded capsule; never use an external newer checkpoint to repair an older save.
+
+Copied saves inherit their checkpoint/world identity and open a newly fenced working history. Renaming files/titles does not define identity. A separate new-universe command is out of scope. Only one live writable game context attaches to a Host world; another publisher cannot take over silently.
+
+The Host uses a versioned SQLite database with one writer and explicit transactions. Prepare an immutable command durably before sending it. Store its world/run context, command ID, sequence, expected revision, payload hash and intended transition. On reconnect to the same live context, reconcile the capsule before retrying a prepared command. On a new load context, archive/abandon unrepresented future work; do not replay it. Database loss rebuilds current operational state from the capsule and honestly reports missing historical details.
+
+The bridge processes a command in one non-yielding game-thread operation:
+
+1. Validate world/execution token, operation identity/hash, expected accepted prefix, current capability and membership.
+2. Resolve duplicates before applying: a matching retained receipt returns its actual outcome. Commands at/below the compacted watermark can never execute again; if the exact outcome has been compacted, return an explicit already-settled/receipt-compacted result rather than fabricating details. A hash conflict faults/rejects the command.
+3. Preflight the complete new capsule and encoded size before an effect. Reserve all rollback values and receipt space. At the 48 KiB encoded capsule limit, hold new work until a safe compaction succeeds. No silent journal eviction that permits replay.
+4. Apply the effect and swap the immutable accepted projection/receipt together. No yielding, network or filesystem work is allowed between them. A counter effect is the first implementation.
+5. Publish the accepted result off-thread. Lost responses are harmless because the capsule retains the accepted prefix and outcome.
+
+Host-proposed compaction verifies the exact current revision/hash and retains complete active state plus a settled sequence watermark. Test that an old command cannot execute after its detailed receipt has been removed. Bound active state (initially, for example, 8 depots, 16 routes, 16 rules, 32 active shipments and 32 detailed receipts; Sol may reduce limits for measured encoded size). Capacity exhaustion must be visible and preserve accepted work.
+
+OnSave serializes the already accepted capsule, never waits for Host. OnLoad atomically replaces every field and clears pending commands/derived caches, including when no prior capsule exists. Preserve unknown/corrupt raw nodes and disable effects with an explanation; do not initialize a blank state over them. The database is archival/supporting state, never a competing source of current reality.
+
+Acceptance: 1,000 repetitions of one command increment once; conflicts and obsolete run/revision messages are rejected. Exercise failure before/after durable prepare, game apply, acknowledgement and save. Test Host restart while KSP lives, KSP restart from saved state, same-UT reload, older quicksave, copied save, compaction and database loss. Distinguish deterministic fault-injection proof from actual killed-process/runtime evidence. Prove ordinary scene transitions retain accepted state despite conservative fencing. No resource writes before this gate.
+
+## 3b: one real effect and provider ownership
+
+Implement an inventory gateway exposing explicit capabilities, stable member resolution, current observation/version, preflight, bounded apply, rollback and required provider synchronization. Physical writes must re-read authoritative inventory; M2 stock snapshots cannot authorize spending. Check full membership, unique nonzero persistent IDs, resource existence, finite stock, available capacity, flow/transfer locks, supported scene, and current provider ownership. Never include unregistered visiting parts.
+
+The first fixture moves exactly one unit between two explicitly enrolled resource tanks, with no funds, engines or live production. Precompute source/destination changes and the new receipt/projection before writing. If a synchronous write fails, restore all touched quantities; if rollback cannot be confirmed, retain a fault record including the uncertain intent and stop effects for that endpoint. Do not publish ordinary success or silently retain an old ledger beside uncertain physical changes.
+
+Prove actual KSP save-capture ordering: no save may serialize the physical effect without its matching recovery projection, or vice versa. Use verified lifecycle hooks and a mutation guard across the physical-save capture boundary. Do not treat Scenario.OnSave alone as proof of whole-vessel atomic capture. If the hook ordering cannot be established, physical effects remain disabled and the evidence names the concrete missing gate.
+
+BRP 0.2.7 is installed in production but absent from the original dev installation. Inspect its local XML/API/source/assembly as needed. Prove which inventory owns loaded, packed and unloaded tanks, how current-time catch-up works, how part membership maps to that inventory, and how writes/rollback/dirty notifications persist through loading. Test with the version-matched provider in dev before claiming modded/unloaded support. Never mutate a cached proto snapshot merely because its amounts are accessible. Provider synchronization work must be profiled as an indivisible call; a budget cannot preempt it.
+
+Acceptance: one-unit conservation, repeated command, insufficient stock, full/locked/missing/duplicate member, injected preflight/apply/rollback failure, save/reload and loaded/unloaded transition. Validate actual game quantities and recovery capsule together. If only a vanilla static gateway passes, report that scope and keep BRP endpoints visibly disabled.
+
+## 4: one virtual shipment
+
+Expand registration only as needed for multiple explicit static depots. Migrate M2's existing single registration without changing its depot/world/member IDs. Prevent overlapping membership between depots. Retain unchecked selection, explicit preview/confirmation, member-based identity across vessel rename/docking, and hold missing/split member sets. A depot is not an entire vessel and not a docking port. The registration-window redesign is tracked separately; make any necessary multi-depot controls readable and reachable without an unrelated visual overhaul.
+
+Use an immutable route version containing source depot, destination depot, resource manifest, travel duration and provenance. Initial routes may be explicitly user-entered static transport profiles; label that provenance. Do not invent a recorded trip duration, flight proof, launch cost or market price. The known earlier tanker manifest is 7,000 LF / 8,400 Oxidizer / 1,200 MonoPropellant, but no imported proof is required for tiny development fixtures. Purchases/economies and physical RMM conversion are later work.
+
+Send once goes through the same service as later schedules. Successful dispatch debits all source quantities once and creates the matching cargo-in-transit record in the same accepted operation. Departure UT is the actual successful debit time. Due UT is departure plus the route's positive finite travel duration. A failed/held withdrawal creates no spendable cargo and records no false departure.
+
+Arrival is a separate idempotent accepted effect at or after due time. Credit only what fits at the authoritative destination and subtract precisely that amount from in-transit cargo in the same accepted projection. Keep residual cargo held with a readable reason. Missing/full/unsupported destinations do not delete cargo, mark completion or silently send it elsewhere. No vessel is spawned, loaded for rendering, docked, reserved or deorbited. No RMM order is converted automatically.
+
+Source stock + remaining cargo in transit + destination stock must remain conserved for each resource absent explicitly modeled external consumption/production. Save/load restores all three together. The mirrored active ledger is sufficient after database loss. Permit bounded shipment history compaction without losing active cargo or allowing old effects to replay.
+
+The Host plans from real KSP UT, not wall time. Static gateway deliveries can continue with a distant active vessel if the provider gate passes. If historical provider integration is unavailable, apply at the current trustworthy UT and record intended due time and actual processing time separately. Never backdate a debit or insert resources into past production. Unsupported production endpoints remain held; this milestone does not implement or duplicate colony production formulas.
+
+Acceptance: no destination credit before due, source debit once, delayed/partial/full/missing destination, save/reload at departure/transit/arrival, process interruption, provider/load transitions, and a distant active vessel. Assert zero spawned delivery vessels and actual conservation. Unloaded BRP operation is an explicit gate, not inferred from a pure simulator pass.
+
+## 5: schedules and useful Windows Manager
+
+Add a depot list/stock view, route editor with explicit source/destination/manifest/duration, send-once action, active shipment status and history, then repeat and keep-stock controls. Keep human names primary, technical IDs under details, whole-unit grouped inventory numbers, readable rows, and explicit last-observed/held reasons. Commands have a visible pending/accepted/rejected result; repeated clicks/reconnect retry the same client request ID. Do not report a route/rule edit committed before it is mirrored into the accepted KSP capsule.
+
+Repeat rules store their next due slot in accepted state and allow only one pending attempt per rule. Missed blocked slots coalesce into one waiting request. Successful departures use actual departure UT; do not materialize thousands of fictional historical shipments after a jump. Keep-stock uses available current stock plus outstanding inbound cargo exactly once, a low trigger and higher target, explicit route batch size, and one pending dispatch per rule. Unavailable inventory holds the decision; stale display values cannot trigger a spend. Editing/pausing a rule does not modify cargo already dispatched.
+
+The shared engine is deterministic from accepted state, current authoritative observations and target UT. The Host is the only simulation writer, yields after bounded work, and cancels obsolete catch-up on context changes. Coalesce clock samples; process meaningful due events rather than each elapsed second. One outstanding physical effect per world prevents overlap. Check capsule limits before accepting more rules/work. Record scheduled time versus actual departure/arrival and explain delayed inventory/provider work in the UI.
+
+Acceptance: same engine invoked by send-once and rules; duplicate Manager request; rule save/load/pause/edit; pending inbound counted once; blocked-slot coalescing; large UT jump with bounded queue/CPU and no KSP warp-rate changes; read-only old-clock behavior if the new command capability is absent. Test deterministic engine scenarios separately from actual game integration. Do not call twenty-year colony production exact.
+
+## Delivery and documentation
+
+Luna keeps the existing light documentation site current using the installed Sites building/hosting skills and existing project. Preserve existing future-idea material. Publish factual stage status as implementation gates change: complete, in progress, blocked, or future. Mark the user-confirmed M2 registration and stock display as working, and include the UI redesign backlog. Do not announce stage 4/5 operational until runtime/provider gates support that claim. An unverified demo may be labeled as such.
+
+Finish with reproducible build/test/development launch commands, a runtime-only package, source backup, SQLite/schema/migration docs, readable usage instructions, disabled dev fixtures, measured timing/queue observations, and an evidence ledger listing every unperformed check. Keep the regular installed build intact. No production deployment is part of this overnight task. If a gate remains blocked, deliver all independently useful work plus the exact blocker and next step rather than guessing around it.

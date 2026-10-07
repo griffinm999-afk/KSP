@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AssemblyName>Expanse.Clock.Manager</AssemblyName>
+    <ApplicationIcon>..\..\assets\expanse-foundations.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Expanse.Clock.Core\Expanse.Clock.Core.csproj" />
+    <Resource Include="..\..\assets\expanse-foundations.ico" Link="Assets\expanse-foundations.ico" />
+    <Resource Include="..\..\assets\expanse-foundations-logo.png" Link="Assets\expanse-foundations-logo.png" />
+  </ItemGroup>
+</Project>

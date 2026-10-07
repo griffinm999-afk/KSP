@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable></PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Expanse.Domain/Expanse.Domain.csproj" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyRuntime.PowerOperators.cs" Link="Actual/ColonyRuntime.PowerOperators.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyRuntime.RangerBankOperators.cs" Link="Actual/ColonyRuntime.RangerBankOperators.cs" />
+    <Compile Include="../../src/Expanse.WorldBridge/ColonyUtilityInstructionObservation.cs" Link="Actual/ColonyUtilityInstructionObservation.cs" />
+  </ItemGroup>
+</Project>

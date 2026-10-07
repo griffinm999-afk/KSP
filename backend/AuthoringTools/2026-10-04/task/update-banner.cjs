@@ -1,0 +1,17 @@
+const fs=require('fs');
+const path=process.argv[2];
+let page=fs.readFileSync(path,'utf8');
+const mark=`<span class="colony-mark" aria-hidden="true"><svg viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 35C15 8 46 6 61 25" stroke="#ef9253" stroke-width="2" stroke-linecap="round"/><circle cx="8" cy="17" r="1.4" fill="#b7d6e4"/><circle cx="58" cy="8" r="1.2" fill="#b7d6e4"/><path d="m53 12 5-7 2 8-5 4z" fill="#ef9253"/><path d="M14 37V29c0-12 8-21 18-21s18 9 18 21v8l-7 5H21z" fill="#d7e8ea" stroke="#ffad75" stroke-width="2"/><ellipse cx="32" cy="29" rx="14" ry="12" fill="#8ac565"/><ellipse cx="27" cy="26" rx="3.5" ry="5" fill="#f5faf6"/><ellipse cx="37" cy="26" rx="3.5" ry="5" fill="#f5faf6"/><circle cx="28" cy="26" r="1.4" fill="#1b342e"/><circle cx="36" cy="26" r="1.4" fill="#1b342e"/><path d="M29 34c2 2 5 2 7 0" stroke="#315b39" stroke-width="1.6" stroke-linecap="round"/><path d="M17 39h30" stroke="#ef9253" stroke-width="3" stroke-linecap="round"/></svg></span>`;
+const original=/<span class="colony-mark" aria-hidden="true"><svg[^>]*>.*?<\/svg><\/span>/s;
+if(!original.test(page))throw Error('Header mark not found');
+page=page.replace(original,mark);
+const art=/<div class="expedition-art" role="img" aria-label="[^"]*"><\/div>/;
+if(!art.test(page))throw Error('Hero element not found');
+page=page.replace(art,'');
+page=page.replace(/\.expedition-art,\.detail-page \.expedition-art\{[^}]*\}/g,'');
+page=page.replace(/\.detail-page \.expedition-art\{[^}]*\}/g,'');
+page=page.replace(/\.expedition-art\{[^}]*\}/g,'');
+const styles=`header{background:radial-gradient(circle at 67% 26%,#55798955 0 1px,transparent 2px),radial-gradient(circle at 82% 73%,#ffb27b55 0 1px,transparent 2px),linear-gradient(100deg,#0b2433,#102d3c 60%,#0b2433);border-bottom:1px solid #426277}.bar{min-height:92px;padding:12px 28px;gap:22px}.brand{gap:10px;font-size:22px;letter-spacing:.18em}.brand small{font-size:11px;letter-spacing:.28em;margin-top:3px}.colony-mark{width:64px;height:58px;flex:0 0 64px}.colony-mark svg{width:64px;height:58px}.header-section{display:flex;align-items:center;gap:9px;white-space:nowrap}.header-spark{color:#ff9a53;font-size:20px}.header-section small{display:block;color:#7fb0b8;font-size:10px;letter-spacing:.18em;margin-top:2px}main,.detail-page main{margin-top:12px}@media(max-width:640px){.bar{min-height:72px;padding:8px 14px;gap:10px}.brand{font-size:17px;letter-spacing:.14em}.brand small{font-size:10px;letter-spacing:.21em}.colony-mark{width:42px;height:38px;flex-basis:42px}.colony-mark svg{width:42px;height:38px}.header-section{display:none}main,.detail-page main{margin-top:10px}}`;
+page=page.replace('</style>',styles+'\n</style>');
+page=page.replace('<span class="header-section">COLONY OPERATIONS</span>','<span class="header-section"><span class="header-spark" aria-hidden="true">✦</span><span>COLONY OPERATIONS<small>KERBAL MISSION CONTROL</small></span></span>');
+fs.writeFileSync(path,page);

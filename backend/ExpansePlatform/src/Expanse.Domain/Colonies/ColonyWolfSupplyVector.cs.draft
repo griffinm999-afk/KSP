@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+namespace Expanse.Domain.Colonies
+{
+    public static partial class ColonyEngine
+    {
+        // Compose the existing bounded raw-harvester planner against each prior
+        // result. Shared Power is debited by each actual installed recipe once.
+        public static ColonyWolfQuote QuoteWolfSupplies(ColonyState state,string colonyId,IReadOnlyList<ColonyWolfIngredient> demands,ColonyEnvironment env)
+        {
+            if(demands==null || demands.Count<1 || demands.Count>16)throw new InvalidDataException("WOLF compound demand requires 1–16 resources.");
+            var rows=demands.Select(d=>new ColonyWolfIngredient{Resource=d.Resource,Points=d.Points}).OrderBy(d=>d.Resource=="Power"?1:0).ThenBy(d=>d.Resource,StringComparer.Ordinal).ToList();
+            ColonyStateCodec.WolfIngredients(rows);
+            if(rows.Count==1)return QuoteWolfSupply(state,colonyId,rows[0].Resource,rows[0].Points,env);
+            var observed=env.Wolf.Sites.SingleOrDefault(s=>s.ColonyId==colonyId)??throw new InvalidDataException("Current WOLF site is unavailable.");
+            var shadow=new ColonyEnvironment {WorldId=env.WorldId,ContextKey=env.ContextKey,Ut=env.Ut,AvailableFunds=env.AvailableFunds,
+                DevelopmentMode=env.DevelopmentMode,UnlockedTech=env.UnlockedTech,
+                Wolf=new ColonyWolfEnvironment {Ready=env.Wolf.Ready,Provider=env.Wolf.Provider,Reason=env.Wolf.Reason,Recipes=env.Wolf.Recipes,DepotConstruction=env.Wolf.DepotConstruction}};
+            var site=new ColonyWolfSiteObservation {ColonyId=observed.ColonyId,ContextKey=observed.ContextKey,ObservedUt=observed.ObservedUt,
+                Depot=CloneWolfDepot(observed.Depot),HomeGround=observed.HomeGround,SurveyPartId=observed.SurveyPartId,
+                SurveyConfigurationHash=observed.SurveyConfigurationHash,SurveyVeins=observed.SurveyVeins,Reason=observed.Reason};
+            shadow.Wolf.Sites.Add(site);
+            ColonyWolfQuote combined=null;
+            foreach(var demand in rows)
+            {
+                var next=QuoteWolfSupply(state,colonyId,demand.Resource,demand.Points,shadow);
+                if(combined==null)combined=next;
+                else foreach(var module in next.Modules)
+                {
+                    var existing=combined.Modules.SingleOrDefault(m=>m.Recipe.Id==module.Recipe.Id);
+                    if(existing==null)combined.Modules.Add(new ColonyWolfModule{Recipe=CloneWolfRecipe(module.Recipe),Count=module.Count});
+                    else
+                    {
+                        if(ColonyJson.Serialize(existing.Recipe,65536).SequenceEqual(ColonyJson.Serialize(module.Recipe,65536))==false)throw new InvalidDataException("WOLF recipe identity changed while composing dependency vector.");
+                        existing.Count=checked(existing.Count+module.Count);
+                    }
+                }
+                site.Depot=CloneWolfDepot(next.After);
+            }
+            if(combined.Modules.Sum(m=>m.Count)+(combined.EstablishDepot?1:0)>64 || combined.Modules.Count>32)throw new InvalidDataException("Compound WOLF purchase exceeds 64 modules/32 recipe types.");
+            combined.Demands=rows;combined.After=ExpectedWolfDepot(combined);
+            if(!WolfDemandSatisfied(combined,combined.After))throw new InvalidDataException("Shared WOLF dependency allocation no longer satisfies the whole demand vector.");
+            combined.Funds=checked((combined.EstablishDepot?combined.DepotConstruction.Funds:0)+combined.Modules.Sum(m=>checked(m.Recipe.Funds*m.Count)));
+            combined.LaborSeconds=(combined.EstablishDepot?combined.DepotConstruction.LaborSeconds:0)+combined.Modules.Sum(m=>m.Recipe.LaborSeconds*m.Count);
+            combined.Id=ColonyStateCodec.WolfQuoteHash(combined);return combined;
+        }
+        public static bool WolfDemandSatisfied(ColonyWolfQuote quote,ColonyWolfDepot depot) =>
+            quote.Demands.Count==0 ? WolfAvailable(depot,quote.Resource)>=quote.DesiredAvailable : quote.Demands.All(d=>WolfAvailable(depot,d.Resource)>=d.Points);
+        static string ReserveWolfQuote(ColonyState state,ColonyCommand command,ColonyEnvironment env,ColonyWolfQuote q)
+        {
+            var colony=Colony(state,command.ColonyId);CheckFunds(state,colony,q.Funds,env);
+            if(state.WolfOrders.Count>=128 || state.WolfOrders.Any(o=>o.State!="operational"&&o.State!="cancelled"))throw new InvalidDataException("Shared WOLF supplier has an unresolved purchase or its bounded history is full.");
+            var order=new ColonyWolfOrder {Id=command.OperationId,ColonyId=command.ColonyId,Quote=q,AccountedUt=env.Ut};
+            if(q.Funds==0){order.FundsPaid=true;order.State="ready";order.Reason="Existing WOLF capacity covers the exact vector; no physical stock credited.";}
+            else state.Effects.Add(FundsEffect(command,order.Id,-q.Funds,"wolfPurchase"));
+            state.WolfOrders.Add(order);return order.Id;
+        }
+    }
+}

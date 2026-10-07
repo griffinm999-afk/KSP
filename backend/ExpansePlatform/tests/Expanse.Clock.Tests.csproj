@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="xunit" Version="2.5.3" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+    <Compile Remove="Expanse.TrackingStation.Tests\**\*.cs" />
+    <Compile Include="..\src\Expanse.WorldBridge\EconomicRecoveryEffects.cs" Link="BridgeBoundary\EconomicRecoveryEffects.cs" />
+    <Compile Include="..\src\Expanse.WorldBridge\ColonyPureTickWork.cs" Link="BridgeBoundary\ColonyPureTickWork.cs" />
+    <None Update="recorded52.json" CopyToOutputDirectory="PreserveNewest" />
+    <Compile Include="..\src\Expanse.WorldBridge\ColonyPerformanceSamples.cs" Link="BridgeBoundary\ColonyPerformanceSamples.cs" />
+    <Compile Include="..\dev\Expanse.Colony.Acceptance\AcceptanceChecks.cs" Link="Acceptance\AcceptanceChecks.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Expanse.Clock.Core\Expanse.Clock.Core.csproj" />
+    <ProjectReference Include="..\src\Expanse.Domain\Expanse.Domain.csproj" />
+    <ProjectReference Include="..\src\Expanse.Clock.Host\Expanse.Clock.Host.csproj" />
+  </ItemGroup>
+
+</Project>

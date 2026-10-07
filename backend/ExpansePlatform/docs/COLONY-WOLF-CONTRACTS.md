@@ -1,0 +1,33 @@
+# Costed WOLF setup
+
+The selected KSP save owns `WolfOrders`. WOLF owns its depot capacity and point allocations; colony stock and physical ElectricCharge remain separate. Existing depot capacity is observed as external capacity, including any earlier administrative edits. Observing it does not manufacture colony stock or assert that a colony built it.
+
+`approveWolfSupply` buys a finite virtual module package at the complete installed `AvailablePart.cost`, tied to the loaded part configuration and its exact installed WOLF recipe. The quote lists module counts, recipe input/output points, technology, funds, full depot before/after witnesses, and any new depot/survey work. It creates no duplicate physical vessel or included tank contents. The modeled outsourced supplier lead time is 10,800 UT seconds per module, sequentially; one shared supplier slot serves the whole selected world. Local Kerbal workers cannot multiply that supplier's production. This is an explicit economic balance contract, not a claim that WOLF has a native remote purchase feature.
+
+Normal Power setup uses the installed input-free Power recipe. The current installed large Power module costs 55,620 funds and supplies 5 points with that option. Its 50-point option requires actual EngineerCrewPoint and Maintenance; this bounded provider does not fabricate those points or use that option. Raw extraction uses installed harvester recipes that consume the corresponding surveyed `*Vein`, and Power where the installed recipe requires it. Missing Power is quoted as additional purchased modules. Missing veins or other unsupported dependencies reject the quote. Desired available capacity is bounded to 1–1000 points, with at most 64 modules including new depot hardware; a desired value can exceed what that module bound can establish.
+
+An unestablished depot requires the installed depot purchase. Establishment uses WOLF's registry and depot APIs, and adds the exact installed initial capacity once: 5 Power off the home ground, or Food1/MaterialKits5/Oxygen1/Power10/Water5 on the home ground. Existing depots receive no starting-capacity bonus. These are WOLF point streams, not delivered food, kits or tanks.
+
+An unsurveyed biome requires a real adopted, loaded, unpacked, landed `WOLF_SurveyModule` at the exact colony body and biome. The installed Surface Scanner receives that module from WOLF's StockTweaks patch. The quote reads the installed `ResourceManager` at the scanner's actual coordinates and the runtime invokes that scanner's real survey event. Remote missing surveys are held. The qualification requires the current main body to match because this installed WOLF `ResourceManager` consults `FlightGlobals.currentMainBody` internally.
+
+At activation, the runtime validates the whole depot and installed recipe terms again, then prepares and serializes applying and success states before the first WOLF call. It commits the applying witness before any external operation, checks selected game, load epoch, scenario and registry identity after each creation/establishment step, and uses actual `IDepot.Negotiate(List<IRecipe>)` for the batched dependency allocation. Success requires exact full-depot readback matching all incoming and outgoing streams, including unrelated existing allocations.
+
+WOLF's batched negotiation handles expected missing-input failures before applying its offsets. It is not assumed to provide a transaction across unexpected exceptions or callbacks. Any partial result, exception, context loss or lost acknowledgement retains a durable hold. No guessed rollback or automatic resend is permitted. Physical hopper production continues under installed USI converters and BRP, and this setup does not independently integrate their output into colony stock.
+
+## Preview and recovery contract
+
+The client receives the actual `ColonyState` and `ColonyEnvironment.Wolf`. A normal preview is the pure `ColonyEngine.QuoteWolfSupply(state, colonyId, resource, desiredAvailable, environment)`. Approval supplies the usual operation/context/revision fields, `Kind=approveWolfSupply`, `ColonyId`, the returned `QuoteId`, and fields `Resource` and `DesiredAvailable`. The game rederives the quote before acceptance. An unpaid reservation can be cancelled with `cancelWolfSupply` and `TargetId`.
+
+If another depot allocation changes while paid hardware is in supplier transit, setup stops before mutation. `AllocationAttempted=false` distinguishes this preflight hold from an unknown external effect. A productive recovery is available through the pure `QuotePaidWolfReplan(state, orderId, environment)` and `replanPaidWolfSupply`, supplying its reviewed hash in `QuoteId` and the original order in `TargetId`.
+
+That recovery retains the original paid modules, funds and completed lead time. It recomputes only their allocation against a fresh entire-depot witness. It grants no new hardware, funds, starting capacity or manufacturing. If someone else established the biome meanwhile, an unused purchased depot is explicitly retained and no establishment bonus is added. The replan must still meet the original desired supply using the same modules. It is allowed only for the sole unattempted WOLF preflight hold; attempted or unknown effects cannot use this path. Old preflight effect witnesses remain as cancelled history.
+
+The existing WOLF administration pipe/page continues to be an explicitly separate capacity-editing tool. The normal purchase/allocation provider does not call it.
+
+## Verification boundary
+
+Sixteen domain tests cover real-cost dependency quoting, direct Power, genuine veins, once-only starting streams, current context/technology/quote checks, cash floors, finite shared supplier occupancy, sequential lead time, exact before/after activation, serialization, no physical stock credit, unknown-outcome holds and safe paid-package replan.
+
+`dev/Expanse.Wolf.Contract.Tests` reads actual installed CFGs and executes the installed `USI_WOLF` API in standalone memory. Its 26 checks confirm actual costs and recipes, exact batched point offsets for 10/20/30 Gypsum, WOLF `OnSave`/`OnLoad` roundtrips, colony witness roundtrips, and unchanged allocations after an expected missing-vein rejection. Those fixtures are explicitly external in-memory capacity; they are not attached to a game or save.
+
+The production runtime compiles against installed KSP and WOLF assemblies. These checks do not prove actual Unity survey/science callbacks, selected-game scene transitions, quickload ordering, loaded physical hopper output or actual KSP save persistence. Root coordinates those acceptance checks in the isolated development game; no live save or DLL is changed by these tests.

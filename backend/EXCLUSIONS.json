@@ -1,0 +1,106 @@
+[
+  {
+    "file": "ExpansePlatform/docs/COLONY-PAUSE-CHECKPOINT-20261003.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-0641.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-0708.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-0818.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-0858.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-0935.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1010.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1300.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1340.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1412.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1452.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1550.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1718.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261003-1725.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261004-0108.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261004-0152.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261004-0316.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-RESUME-20261004-0445.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/docs/COLONY-SHUTDOWN-TRACE16.md",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "ExpansePlatform/tests/recorded52.json",
+    "reason": "Recorded runtime fixture or personal operational log"
+  },
+  {
+    "file": "All bin/obj/caches/runtime artifacts",
+    "reason": "Generated binaries and personal runtime data"
+  },
+  {
+    "file": "All source staging/backup/versioned package copies",
+    "reason": "Obsolete copies; current integrated primary is canonical; source identity dedup applies to tools"
+  },
+  {
+    "file": "RMM-investigation, older work craft/flight scripts, decompiled game/mod reference source",
+    "reason": "Unrelated flight work or third-party source"
+  },
+  {
+    "file": "Site stages and browser profiles",
+    "reason": "Website canonical v67 exported separately by Site owner"
+  },
+  {
+    "file": "All .sfs/.craft/.dll/.exe/.zip/.dpapi/.env and runtime .log/.ndjson",
+    "reason": "Saves, binaries, credentials, caches or personal readings"
+  },
+  {
+    "file": "Credential store and status/receipt files in SiteRelay",
+    "reason": "Excluded; only authored scripts included"
+  }
+]

@@ -1,0 +1,15 @@
+const fs=require('fs');
+function parse(path){const root={type:'ROOT',v:{},c:[]},stack=[root];let pending='';for(let l of fs.readFileSync(path,'utf8').split(/\r?\n/)){l=l.trim();if(!l||l.startsWith('//'))continue;if(l==='{'){const n={type:pending,v:{},c:[]};stack.at(-1).c.push(n);stack.push(n)}else if(l==='}')stack.pop();else if(l.includes('=')){const i=l.indexOf('=');stack.at(-1).v[l.slice(0,i).trim()]=l.slice(i+1).trim()}else pending=l}if(stack.length!==1)throw Error('Unbalanced config');return root}
+function all(n){return [n,...n.c.flatMap(all)]}
+const savePath='C:/Kerbal Space Program/saves/The Expanse/persistent.sfs';const saved=all(parse(savePath)),configured=all(parse('C:/Kerbal Space Program/GameData/ModuleManager.ConfigCache'));
+const parts=new Map(configured.filter(n=>n.type==='PART'&&n.v.name).map(n=>[n.v.name.replaceAll('_','.'),n]));const catalog=JSON.parse(fs.readFileSync('catalog.json'));
+for(const building of catalog.buildings){const vessel=saved.find(n=>n.type==='VESSEL'&&n.v.pid?.replaceAll('-','')===building.id.replaceAll('-',''));building.production=[];if(!vessel)continue;
+ for(const part of vessel.c.filter(n=>n.type==='PART')){const config=parts.get(part.v.name);if(!config)continue;const cms=config.c.filter(n=>n.type==='MODULE'),sms=part.c.filter(n=>n.type==='MODULE');const occurrences={};const bays=sms.filter(n=>n.v.name==='USI_SwappableBay'),cbays=cms.filter(n=>n.v.name==='USI_SwappableBay');
+ for(const m of sms){const type=m.v.name,index=occurrences[type]||0;occurrences[type]=index+1;if(!['USI_Converter','USI_Harvester','ModuleResourceConverter','ModuleResourceHarvester'].includes(type))continue;
+ let recipe=cms.filter(n=>n.v.name===type)[index],bay=null;
+ if(type==='USI_Converter'||type==='USI_Harvester'){const bi=cbays.findIndex(n=>Number(n.v.moduleIndex)===index);if(bi>=0){bay=cbays[bi].v.bayName;const selected=Number(bays[bi]?.v.currentLoadout);recipe=Number.isInteger(selected)?cms.filter(n=>n.v.name===(type==='USI_Converter'?'USI_ConverterSwapOption':'USI_HarvesterSwapOption'))[selected]:null;}}
+ if(!recipe)continue;const resources=kind=>recipe.c.filter(n=>n.type===kind).map(n=>({resource:n.v.ResourceName,baseRate:Number(n.v.Ratio)})).filter(n=>n.resource&&Number.isFinite(n.baseRate));const outputs=resources('OUTPUT_RESOURCE');const harvest=recipe.v.ResourceName;if(harvest&&!outputs.length)outputs.push({resource:harvest,baseRate:null});if(!outputs.length)continue;
+ building.production.push({part:config.v.title?.startsWith('#')?config.v.name:config.v.title||config.v.name,bay,recipe:recipe.v.ConverterName||harvest||type,enabled:m.v.isEnabled==='False'?false:m.v.IsActivated==='True'?true:m.v.IsActivated==='False'?false:null,inputs:resources('INPUT_RESOURCE'),outputs,required:resources('REQUIRED_RESOURCE'),specialist:recipe.v.Specialty||recipe.v.ExperienceEffect||null,kind:harvest?'Mining':'Processing'});
+ }}
+}
+catalog.productionObservedAt=fs.statSync(savePath).mtime.toISOString();fs.writeFileSync('catalog.json',JSON.stringify(catalog,null,2));console.log(catalog.buildings.map(b=>b.name+': '+b.production.length+' recipes').join('\n'));

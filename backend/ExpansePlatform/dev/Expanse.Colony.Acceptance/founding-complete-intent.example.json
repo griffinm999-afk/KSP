@@ -1,0 +1,60 @@
+{
+  "FillPopulationTarget": true,
+  "NewArrivalCount": 2,
+  "ExistingResidentRosterIds": [],
+  "RecruitRosterIds": [],
+  "PassengerRouteId": "",
+  "Startup": {
+    "SuppliesReorderEnabled": true,
+    "SuppliesReorderPointMicroUnits": 0,
+    "SuppliesTargetMicroUnits": 500000000,
+    "ReorderCadenceSeconds": 21600,
+    "ServiceEnabled": true,
+    "ServiceTargetFillFraction": 0.95,
+    "ServiceCadenceSeconds": 21600,
+    "MachineryReserveMicroUnits": 0,
+    "MaterialKitsReserveMicroUnits": 100000000,
+    "EnrichedUraniumReserveMicroUnits": 0,
+    "LocalProcurementEnabled": true
+  },
+  "Production": {
+    "Mode": "localInvestment",
+    "RecipeId": "cultivate-substrate-v1",
+    "PackageCount": 1,
+    "ReviewHorizonSeconds": 129600,
+    "Operations": {
+      "RegisterCreatedEndpoints": true,
+      "AutomaticIntake": true,
+      "AutomaticInputRefill": true,
+      "Resources": [
+        {
+          "Resource": "Fertilizer",
+          "InitialReserve": 100000000,
+          "ReorderEnabled": true,
+          "ReorderPoint": 100000000,
+          "TargetAmount": 200000000,
+          "CadenceSeconds": 21600,
+          "NativeTargetFraction": 0.5
+        },
+        {
+          "Resource": "Machinery",
+          "InitialReserve": 100000000,
+          "ReorderEnabled": true,
+          "ReorderPoint": 100000000,
+          "TargetAmount": 100000000,
+          "CadenceSeconds": 21600,
+          "NativeTargetFraction": 0.95
+        },
+        {
+          "Resource": "Plutonium-238",
+          "InitialReserve": 1000000,
+          "ReorderEnabled": true,
+          "ReorderPoint": 1000000,
+          "TargetAmount": 2000000,
+          "CadenceSeconds": 21600,
+          "NativeTargetFraction": 1
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,15 @@
+# Colony inspector (first release)
+
+The Manager's **Colony** tab groups observed landed MKS/WOLF vessels by body and biome. It reports physical tank amounts, capacity, Local Warehouse configuration, crew, and enabled converter recipes. A converter's **Enabled** state is its KSP activation switch; it does not prove positive production. The tab checks whether each known converter input has an eligible warehouse receiving buffer on its *own vessel*, and reports missing storage, Local Warehouse off, or resource flow off. It also calls out missing or full output storage. Ordinary same-vessel tanks can feed a converter directly but cannot request automatic local replenishment.
+
+The physical readings come from the current KSP process through the existing read-only WorldBridge publisher. Loaded vessels report live part values at the observation time. Unloaded vessels report KSP's saved ProtoVessel tank snapshot, which can lag background production; converter activity and warehouse switches on unloaded vessels are not asserted. The observation refreshes about every three real seconds while a world is loaded. Stale/disconnected/no-world states are labeled separately. World, run, session, and load-epoch transitions clear the prior observation. The original clock/depot/delivery views remain available if colony capture or validation fails.
+
+The bridge scans at most 128 vessel entries, 1,024 parts in total, 160 parts per vessel, 24 settlement vessels, 24 distinct tank states and 12 converters per vessel. It prioritizes Minmus, and marks an observation **partial** when a cap is reached. A partial scan suppresses definitive missing-buffer diagnoses. Colony data has a 24 KiB budget inside a 48 KiB publisher sample, and the Host drops only the optional colony payload if its final view would exceed the 64 KiB pipe frame. No rate, time-to-empty, exact resource transfer, source proximity, or power sufficiency is inferred from the available signals.
+
+WOLF's virtual biome ledger is **not connected** to this view. Its Power, vein points and virtual resource allocations must not be read as physical tank stock. The existing delivery system is for Expanse registered depots; the colony inspector does not create WOLF routes or MKS logistics transfers.
+
+## Build and installation
+
+Build matching Release outputs for WorldBridge, Host, and Manager, then use `tools/package-production-delivery.ps1` to prepare a reviewable ZIP. The package includes the bridge DLL under `GameData/ExpanseWorldBridge/Plugins` plus Host and Manager runtime folders. It does not include a game save or game binaries. **Close KSP and the running Expanse Host/Manager before installing** the matched bridge and desktop files; then relaunch them using the established launcher. Packaging itself neither deploys nor restarts anything. Do not copy a new bridge DLL into a running KSP process.
+
+This first release was checked with compiler tests and an isolated Manager preview. Its exact behavior against the player's current Minmus save remains to be verified after installation in a normal game session.

@@ -1,0 +1,8 @@
+const net=require('net');
+const socket=net.connect('\\\\.\\pipe\\ExpanseFoundations.Clock.View.v1.'+process.env.USERNAME);
+let buffer=Buffer.alloc(0),finished=false;
+function fail(){if(finished)return;finished=true;socket.destroy();console.error('Clock snapshot read failed');process.exitCode=1;}
+socket.setTimeout(2000,fail);socket.on('error',fail);
+socket.on('connect',()=>{const body=Buffer.from(JSON.stringify({protocolVersion:1,messageType:'getSnapshot'})),header=Buffer.alloc(4);header.writeUInt32LE(body.length);socket.write(Buffer.concat([header,body]));});
+socket.on('data',bytes=>{buffer=Buffer.concat([buffer,bytes]);if(buffer.length<4)return;const length=buffer.readUInt32LE();if(length<1||length>65536)return fail();if(buffer.length<length+4)return;finished=true;socket.destroy();const frame=JSON.parse(buffer.subarray(4,length+4));const agriculture=frame.colony?.vessels?.find(v=>v.vesselId==='ff54e526-3a87-46de-921a-6f6e292da861');const context={};for(const key of ['sessionId','loadEpoch','sequence','utSeconds','worldId','runId','scene','activeWorld'])if(Object.hasOwn(frame.sample??{},key))context[key]=frame.sample[key];const colony={};for(const key of ['status','reason','observedUt','sessionId','loadEpoch','sequence','worldId','runId'])if(Object.hasOwn(frame.colony??{},key))colony[key]=frame.colony[key];colony.vessels=agriculture?[{vesselId:agriculture.vesselId,production:agriculture.production}]:[];console.log(JSON.stringify({protocolVersion:frame.protocolVersion,messageType:frame.messageType,status:frame.status,sample:context,ageSeconds:frame.ageSeconds,publisherConnected:frame.publisherConnected,colony},null,2));});
+socket.on('end',()=>{if(!finished)fail();});

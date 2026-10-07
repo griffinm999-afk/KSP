@@ -1,0 +1,18 @@
+Full source snapshot for review, generated 2026-10-07T00:10:03.198160+00:00.
+
+ExpansePlatform/ is the complete current primary authored source, preserving project layout, all eight product projects, tests, tools, documentation and authored assets. Related/ExpanseFoundations is the original authored foundation component. AuthoringTools contains distinct external integration, packaging, telemetry collector, inspection and relay test scripts. Relay/current is the currently installed authored relay script; credentials are excluded. No included script has been executed as part of this export. Many deployment/fixture scripts can mutate resources if run: review source before executing. No external Claude edits, live game, settings, source files or running processes were changed.
+
+Primary was a plain source directory, not Git. Integrated USI/minute-power 23-file candidate is present; source hashes are authoritative for this snapshot. SOURCE-ORIGINS records original locations and SHA256; SHA256-MANIFEST covers every included file except itself. Snapshot rechecks originals and fails if they change during capture. Duplicate tools are omitted only when byte-identical; distinct integration versions retain descriptive filenames. Stale staged product source and packaged build copies are omitted in favor of current primary.
+
+Build: Windows, .NET 8 SDK and .NET Framework 4.7.2 references (NuGet package). Python 3 and Node.js are required for authored helper/relay scripts. See PROJECTS-AND-DEPENDENCIES for every framework, NuGet version and third-party HintPath; supply legitimately installed KSP/Unity, Harmony, USITools/WOLF/USI and BRP assemblies locally. No proprietary game/mod DLL or downloaded dependency is redistributed. Installed USI-LS guard was version112.0.1.0, assembly1.0.0.0, SHA2562aa072962e237d6a31f5f8defc93ad4ac5d03bfa51b0cadb7ddd00b84ffb427d. Project absolute HintPaths need adjustment on another PC. Assets under assets/ are authored UI build resources.
+
+Run builds/tests sequentially to avoid shared Core output file locks:
+dotnet build ExpansePlatform/src/Expanse.WorldBridge/Expanse.WorldBridge.csproj -c Release
+dotnet build ExpansePlatform/src/Expanse.Clock.Host/Expanse.Clock.Host.csproj -c Release
+dotnet build ExpansePlatform/src/Expanse.Clock.Manager/Expanse.Clock.Manager.csproj -c Release
+dotnet test ExpansePlatform/tests/Expanse.Clock.Tests.csproj -c Release
+dotnet test ExpansePlatform/dev/Expanse.ProductionTelemetry.Tests/Expanse.ProductionTelemetry.Tests.csproj -c Release
+
+Prior integrated validation:625 Clock/domain/Host tests and65telemetry tests pass; Bridge/Host/Manager build;26detachednativeILcases,29Bridgequalification checks,5Frameworkregistration checks,roster/performance and10wirecases pass. Export deliberately excludes tests/recorded52.json, a recorded runtime fixture; tests consuming it require a separately supplied synthetic fixture and are not reproducible from this source-only export alone. All test source remains included. See EXCLUSIONS for other omissions. No runtime evidence logs/fixtures are exported.
+
+Review focus: native observer passivity/exception preservation; exact owner/getter/broker provenance; independent supply/EC accepted transfer capture; shortage/dumped Mulch handling; original catch-up intervals; unioned durations/dedup; real cadence/expiry and mode/reset gaps; partial coverage aggregation; optional wire bounds/256KiB fallback; settlement journal correctness and economic/physical separation. Packed and unsupported owner coverage remains partial/unknown. Live USI callbacks and runtime cost remain unverified until authorized installation/relaunch. Website v67 will be supplied separately; no website is bundled here. No direct transmission to Claude.

@@ -1,0 +1,6 @@
+function renderColonySettings(root,c){
+ const panel=detailPanel('Colony settings');root.append(panel);const form=el('form','');form.className='colony-settings-form';const label=el('label','Colony name');label.className='field';const input=el('input','');input.type='text';input.value=c.name;input.required=true;input.maxLength=100;input.setAttribute('aria-label','Colony name');label.append(input);
+ const location=el('dl','');for(const [key,value] of [['Body',c.body],['Biome',c.location]])location.append(el('dt',key),el('dd',value));
+ const actions=el('div','');actions.className='actions';const save=el('button','Save settings');save.type='submit';save.className='btn primary';const status=el('p','');status.setAttribute('role','status');actions.append(save);form.append(label,location,actions,status);panel.append(form);
+ form.onsubmit=async e=>{e.preventDefault();save.disabled=true;status.textContent='';try{const result=await api('colonies/rename',{id:c.id,name:input.value});c.name=result.name;input.value=result.name;document.title=c.name+' · Expanse Foundations';document.querySelector('#colony-detail h1').textContent=c.name;render();status.textContent='Settings saved.'}catch(err){status.textContent=err.message}finally{save.disabled=false}};
+}

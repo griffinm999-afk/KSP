@@ -1,0 +1,57 @@
+{
+  "trackedExclusions": [
+    {
+      "path": "catalog.json",
+      "reason": "Saved vessels, crew, resources, balances and observation dates",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "deliveries-snapshot.json",
+      "reason": "Saved shipments, routes, receipts and game time",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "kerbin-shipping.json",
+      "reason": "Saved endpoints and orbital vessel identities",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "shipping-economics.json",
+      "reason": "World/destination identities and shipment financial snapshots",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "production-sources.json",
+      "reason": "Observed vessel/module identities and dated production configuration",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "tests/fixtures/agriculture-truncated-clock-projection.json",
+      "reason": "Captured private game telemetry projection",
+      "treatment": "Replaced in export with an explicitly marked empty or synthetic review template. Original bytes not included."
+    },
+    {
+      "path": "dist/server/index.js",
+      "reason": "Generated Worker embeds excluded operational datasets and duplicates included source/assets",
+      "treatment": "Excluded; node build.mjs regenerates it using review templates."
+    }
+  ],
+  "notExported": [
+    ".git history and repository credentials",
+    ".env and runtime credentials/live secrets",
+    "live D1 database and local game/save files",
+    "node_modules and third-party installed binaries",
+    "runtime caches, logs and preview state"
+  ],
+  "retainedSourceLiterals": "Unchanged authored code/tests retain deployment project/origin identifiers, fixed install/save path guards, historical game IDs and numerical regression expectations. These are disclosed source/test literals, not a live database/save or credential export.",
+  "dataDependentTests": [
+    "discovery-worker.test.mjs",
+    "lifecycle-worker.test.mjs",
+    "production-sankey.test.mjs",
+    "saved-recipe-dedup.test.mjs",
+    "saved-recipe-fallback.test.mjs",
+    "supply-chain-model.test.mjs",
+    "supply-chain-ui.test.mjs",
+    "supply-resource-coverage.test.mjs"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "worldId": "review-world",
+  "snapshotSavedAt": "1970-01-01T00:00:00Z",
+  "recoveryDestinationId": "",
+  "recoveryShipmentTerms": {},
+  "fuelFundsPerUnit": {
+    "LiquidFuel": 2,
+    "MonoPropellant": 3,
+    "Oxidizer": 0.4
+  },
+  "fuelRateBasis": "Authored fixed fuel-price rules; all operational shipment terms omitted",
+  "_reviewOnly": true
+}

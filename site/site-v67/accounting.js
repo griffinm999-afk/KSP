@@ -1,0 +1,7 @@
+function renderAccounting(root){
+ const notice=el('p','Accounting preview · Example transactions, not your actual account activity.');notice.className='accounting-preview';root.append(notice);
+ const entries=[['Ore exports',100000,0],['Resource imports',0,24000],['Construction',0,40000],['Maintenance',0,6000]];
+ const incoming=entries.reduce((s,r)=>s+r[1],0),outgoing=entries.reduce((s,r)=>s+r[2],0),fmt=n=>n.toLocaleString();
+ const stats=el('div','');stats.className='accounting-totals';for(const [label,value] of [['Incoming',incoming],['Outgoing',outgoing],['Net',incoming-outgoing]]){const card=el('section','');card.append(el('span',label),el('strong',fmt(value)));stats.append(card)}root.append(stats);
+ const panel=detailPanel('Income and expenses');const table=el('table',''),head=el('thead',''),hr=el('tr','');for(const label of ['Category','Incoming funds','Outgoing funds'])hr.append(el('th',label));head.append(hr);table.append(head);const body=el('tbody','');for(const [label,credit,debit] of entries){const row=el('tr','');row.append(el('td',label),el('td',credit?fmt(credit):'—'),el('td',debit?fmt(debit):'—'));body.append(row)}const total=el('tr','');total.className='accounting-total';total.append(el('td','Total'),el('td',fmt(incoming)),el('td',fmt(outgoing)));body.append(total);table.append(body);const wrap=el('div','');wrap.className='scroll';wrap.append(table);panel.append(wrap);root.append(panel);
+}

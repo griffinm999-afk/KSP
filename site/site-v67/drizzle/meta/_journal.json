@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1791175513185,
+      "tag": "0000_sharp_bill_hollister",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1791175894223,
+      "tag": "0001_violet_sasquatch",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1791214181190,
+      "tag": "0002_keen_queen_noir",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1791220444704,
+      "tag": "0003_freezing_sage",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1791247945280,
+      "tag": "0004_blue_harrier",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1791254254147,
+      "tag": "0005_classy_polaris",
+      "breakpoints": true
+    }
+  ]
+}

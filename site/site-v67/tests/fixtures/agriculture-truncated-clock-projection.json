@@ -1,0 +1,24 @@
+{
+  "protocolVersion": 1,
+  "messageType": "clockView",
+  "status": "live",
+  "publisherConnected": true,
+  "ageSeconds": 0,
+  "sample": {
+    "sessionId": "11111111-1111-4111-8111-111111111111",
+    "loadEpoch": "22222222-2222-4222-8222-222222222222",
+    "sequence": 1,
+    "utSeconds": 100,
+    "worldId": "review-world",
+    "runId": "review-run",
+    "scene": "FLIGHT",
+    "activeWorld": true
+  },
+  "colony": {
+    "status": "observed",
+    "reason": "REVIEW TEMPLATE: no operational game data",
+    "observedUt": 100,
+    "vessels": []
+  },
+  "_reviewOnly": true
+}

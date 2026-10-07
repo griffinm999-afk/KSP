@@ -1,0 +1,41 @@
+# Game-owned legacy deliveries and physical transfers
+
+Development implementation, 2026-10-02. Actual KSP qualification is still required; source-linked adapter doubles are not an in-game acceptance result.
+
+The selected save's existing `RecoveryCapsuleModule` / `AcceptedState` remains the authority for legacy Ore/fuel routes, orders, active cargo, terminal physical/funds receipts, and compaction watermarks. The Host database is an observation/history and command queue. Quickload restores the selected capsule together with that save's tanks and funds; later Host history never overwrites it.
+
+## Scheduler ownership
+
+`LogisticsRuntimePlanner` selects at most one typed effect per call. `LegacyLogisticsRuntime` calls it from the KSP game thread at a 0.5-real-second cadence while universal time advances. Paused game time produces no effects. Due arrivals are ordered by saved due UT then shipment ID and selected before new automatic dispatches. Missed repeat slots are coalesced into one actual departure; a stock-triggered shipment never receives travel time before its physical debit. The capsule's current rules/cargo/receipts supply replay protection, not the throttle fields.
+
+The Bridge advertises `runtimeLogistics.v1`. `RecoveryCoordinator.Poll` then stops preparing automatic registry sync, arrivals/recoveries and rule dispatches. It retains configuration, manual send-once, readiness and read projections. Worker exchanges and game-owned effects are serialized under the existing effect gate. Pending receipts are notifications: a lost Host connection releases them without deleting the save's receipt or stopping the game scheduler.
+
+New Ore orders retain the existing configurable positive whole-unit batch validation: default 1,000 Ore, 100 funds/unit, default 64,800 UT seconds. Departed shipments supply their own immutable price and due time, including legacy 500-funds/unit shipments. A physical debit creates cargo once; a due economic recovery uses the existing exact funds witness and conservative uncertain precommit. Unresolved physical/funds effects stop later legacy writes.
+
+Reattachment after a lost acknowledgement can contain later game-owned events. The Host reconstructs the prepared effect and compares its **complete deterministic terminal receipt**, including operation ID, payload hash and physical/funds witness, against the retained selected-save receipt. Ordinary receipt handling still requires the full deterministic state result. If the receipt was compacted or mismatches, the external request is archived/held with unknown outcome and replay disabled. A same-load pure configuration command can be revalidated against a newer schedule prefix; rule policy changes by another actor remain a conflict. Physical send-once commands never rebase.
+
+Transient arrival holds travel in bounded `EffectPoll.RuntimeShipmentHolds` and appear through the existing accepted-state query. Readiness still reports fresh stock/provider/capacity blockers. Public Bridge diagnostics are `LogisticsRuntimeStatus`, `LogisticsRuntimeEffectCount`, and `LogisticsRuntimeDueArrivals`.
+
+## Physical ownership and failure boundary
+
+BRP 0.2.7's audited source has `UpdateBackgroundState()` return immediately for every `Vessel.loaded`, including packed loaded bases. `LoadVessel` applies background inventories then clears the processor state; `SaveVessel` records loaded `PartResource` and links proto mirrors. Therefore a normal loaded processor may have no resource inventories. Requiring invented/coherent BRP rows in that state would permanently block transfers.
+
+`LoadedBrpInventoryGateway` resolves the selected registered vessel/member IDs globally, accepts loaded packed and unpacked Flight vessels, and uses `PartResource` as the loaded authority. Existing retained BRP mirrors, if any, are updated together with their snapshot/config amounts; no mirror or second producer is created. Rollback restores independently observed physical, provider Amount, OriginalAmount, snapshot and config baselines. Membership, resources, processor/mirror identity, loaded/packed lifecycle and exact stock/capacity are rechecked before writes. Unselected tanks and visitors are excluded. Flow locks prevent debits; destination credits are explicit tank writes.
+
+`RemoteBrpInventoryGateway` continues to own unloaded BRP transactions: catch up through the installed provider, require coherent selected inventories and snapshots, update provider Amount/OriginalAmount, snapshot and ConfigNode amounts, call `MarkDirty`, and verify readback. No anchored base is unanchored to make this path work.
+
+`PhysicalInventoryTransfers.TryPrepare(operationId, depotId, manifest, debit, out plan, out reason, targetMemberId = 0)` is the common colony-stock/physical inventory boundary. A nonzero target restricts allocation to one registered tank part while retaining full endpoint membership/hash validation. `Commit` requires preconstructed, synchronous callbacks for current-context validation, durable held ledger state, success, and restoring the prior ledger after confirmed rollback. The hold is installed **before** any provider mutation or callback-triggered save. Exact physical/provider/config readback permits the conserved ledger success swap; confirmed rollback restores prior stock/ledger; context loss or uncertainty retains the hold. Colony callers must own operation IDs/replay guards, reservations, resource conversion policy, and their bounded prepared persistence bytes.
+
+The existing legacy physical effect path now also precommits its prepared fault capsule, retains its prepared prior capsule for confirmed rollback, and swaps its prepared success capsule only after exact readback. A process crash before the next successful KSP save restores the previous durable game save consistently. A save captured inside a provider callback contains a conservative held operation that requires reconciliation, rather than a replayable payable/debit request. This is not cross-process atomicity or a promise that unsaved progress survives a crash.
+
+## Declared bounds
+
+Legacy codec bounds remain: 36 KiB decoded accepted state, 48 KiB encoded capsule, 32 depot records, 16 immutable route versions, 16 automatic rules, 32 active shipments, 32 retained receipts before bounded compaction, 8 fault records, and 16 tank/resource mutation rows. Physical endpoints support 64 selected members, 512 selected observed resource rows, 512 vessels and a 32,768-part global scan. The runtime keeps 16 recent receipts during compaction and checks capsule/fault space before any external write. Exceeding a limit produces a hold; it does not truncate cargo or witnesses. Colony state has its separate authority and limits.
+
+## Automated evidence and remaining runtime proof
+
+- `tests/LogisticsRuntimeTests.cs`: selectors, new 1,000-Ore debit and 100,000-funds delayed settlement, immutable departed terms, stale/locked provider exclusion, repeat coalescing, inbound fuel accounting, arrival priority/hold projection and freight capacity.
+- `tests/LegacyLogisticsHostTests.cs`: single scheduler ownership, hold projections, exact lost-ack reconciliation through downstream events, compacted/mismatched receipt hold, safe queued edit rebase and concurrent policy conflict.
+- `dev/Expanse.Logistics.Adapter.Tests`: **production adapter/service source** compiled against minimal KSP/BRP boundary doubles. 24 checks cover loaded cleared inventories, packed loaded and nonactive loaded ownership, stale mirrors, independent rollback, visitor exclusion, locks, global duplicate identities, lifecycle/stock staleness, repeated plans, unloaded catch-up/coherence, durable save-callback hold, provider failure/context loss, fractional free space, precise service target and late mirror creation.
+
+Native WorldBridge/Domain net472 compilation passed against installed KSP references. This establishes API/build compatibility, not actual KSP persistence. The release gate still requires isolated in-game loaded/unpacked, Foundations anchored-packed, true unloaded BRP, save/load/quickload, scene transitions, Host-closed unattended Ore/fuel completion, exact targeted Machinery/ReplacementParts service, and scheduler/scan performance measurements. Do not install this development slice into the live save before root integration and that gate.

@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import vm from 'node:vm';
+const c={};vm.createContext(c);for(const file of ['crew-observation.js','production-observation.js','supply-chain-model.js','production-flow.js','production-sankey.js'])vm.runInContext(fs.readFileSync(new URL('../'+file,import.meta.url),'utf8'),c);
+// Exact projected Clock.View excerpt from the local read-only inspection,
+// 2026-10-06 ~17:53 UTC, plus the existing dated Site recipe. The projection
+// omits location and outer identity; rejoin only those identities from the
+// saved catalog / the projection's sample. Do not synthesize rates or crew.
+const captured=JSON.parse(fs.readFileSync(new URL('./fixtures/agriculture-truncated-clock-projection.json',import.meta.url),'utf8'));
+const catalog=JSON.parse(fs.readFileSync(new URL('../catalog.json',import.meta.url),'utf8')),building=catalog.buildings.find(b=>b.id===captured.colony.vessels[0].vesselId);assert.equal(building.name,'Agriculture');
+const frame={...captured,worldId:captured.sample.worldId,runId:captured.sample.runId,colony:{...captured.colony,vessels:captured.colony.vessels.map(v=>({...v,body:building.body,biome:building.biome,name:building.name}))}};
+const snapshot=c.supplySnapshot({buildings:[building],productionObservedAt:catalog.productionObservedAt},{body:building.body,location:building.biome},{frame,receivedAt:1000},1000);
+const plan=c.supplyConfiguredFlow(snapshot,'Supplies',snapshot.sourceRefs),actual=c.supplyTelemetryFlow(snapshot,'Supplies','actual');assert.equal(plan.production.total,5.616);assert.equal(plan.producers[0].source,'Saved recipe');assert.equal(actual.production.total,null);assert.equal(actual.demand.total,null);const comparison=c.supplyFlowComparison(plan,'Supplies',51,'plan');assert.equal(comparison.production,5.616);assert.equal(comparison.demand,550.8000000000001);assert.equal(comparison.balance,null);assert.equal(comparison.state,'unknown');const chart=c.productionSankeyModel(plan,'Supplies',51,'plan');assert.equal(chart.sources[0].name,'Agriculture');assert.equal(chart.sources[0].amount,5.616);assert.equal(chart.weighted,false);assert.match(c.productionSankeySvg(chart),/5.62 \/ day/);assert.match(c.productionSankeySvg(chart,{mobile:true}),/5.62\/day/);
+// An authoritative supported-inventory deletion still supersedes the old
+// snapshot. A nonempty partial observation stays conservative about overlap.
+const empty=structuredClone(frame);empty.colony.vessels[0].production={...empty.colony.vessels[0].production,status:'partial',inventoryStatus:'complete-supported'};const authoritative=c.supplySnapshot({buildings:[building]},{body:building.body,location:building.biome},{frame:empty,receivedAt:1000},1000);assert.equal(c.supplyConfiguredFlow(authoritative,'Supplies').production.total,null);
+console.log('Captured legacy/truncated replay passed: saved Agriculture 5.616/day survives; 51-person USI plan 550.8/day stays separate; actual rates and whole-colony balance remain unknown; authoritative inventory still supersedes stale recipes.');

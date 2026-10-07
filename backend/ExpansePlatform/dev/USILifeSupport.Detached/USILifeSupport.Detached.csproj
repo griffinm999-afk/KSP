@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><NoWarn>SYSLIB0050</NoWarn></PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath></Reference>
+    <Reference Include="UnityEngine"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.CoreModule.dll</HintPath></Reference>
+    <Reference Include="UnityEngine.PhysicsModule"><HintPath>C:\Kerbal Space Program\KSP_x64_Data\Managed\UnityEngine.PhysicsModule.dll</HintPath></Reference>
+    <Reference Include="0Harmony"><HintPath>C:\Kerbal Space Program\GameData\000_Harmony\0Harmony.dll</HintPath></Reference>
+    <Reference Include="USITools"><HintPath>C:\Kerbal Space Program\GameData\000_USITools\USITools.dll</HintPath></Reference>
+    <Reference Include="USILifeSupport"><HintPath>C:\Kerbal Space Program\GameData\UmbraSpaceIndustries\LifeSupport\USILifeSupport.dll</HintPath></Reference>
+    <Reference Include="USI_WOLF"><HintPath>C:\Kerbal Space Program\GameData\UmbraSpaceIndustries\WOLF\USI_WOLF.dll</HintPath></Reference>
+    <Reference Include="WOLFUI"><HintPath>C:\Kerbal Space Program\GameData\UmbraSpaceIndustries\WOLF\WOLFUI.dll</HintPath></Reference>
+    <Reference Include="Expanse.WorldBridge"><HintPath>../../src/Expanse.WorldBridge/bin/Release/net472/Expanse.WorldBridge.dll</HintPath></Reference>
+    <Reference Include="Expanse.Domain"><HintPath>../../src/Expanse.Domain/bin/Release/net472/Expanse.Domain.dll</HintPath></Reference>
+  </ItemGroup>
+</Project>
